@@ -11,7 +11,7 @@ import 'package:dio/dio.dart';
 import 'package:html/parser.dart' show parse;
 import './search_result.dart';
 
-var dio = new Dio();
+var dio = Dio();
 
 //class Api2 {
 //  /// 关键字提示（起点）
@@ -52,7 +52,7 @@ class Api {
     ///print('2=====>${response.data}');
     ////print('3=====>${app}');
     List<SearchResult> res = [];
-    app.forEach((f) {
+    for (var f in app) {
       ///print('f==>${f}');
       res.add(
         SearchResult(
@@ -60,7 +60,7 @@ class Api {
           source: f.attributes["data-url"] ?? f.attributes["href"],
         ),
       );
-    });
+    }
 
     return Future.delayed(Duration(seconds: 2), () {
       return res;

@@ -22,24 +22,23 @@ class _DayPickerState extends State<DayPickerDemo> {
         initialDate: _date,
         firstDate: DateTime(2015, 8),
         lastDate: DateTime(2101));
-    if (picked != null && picked != _date)
+    if (picked != _date) {
       print("data selectied :${_date.toString()}");
+    }
     setState(() {
       _date = picked;
     });
-
-    if (picked == null) _date = DateTime.now();
   }
 
   Future<void> _selectTime(BuildContext context) async {
     final TimeOfDay picked =
         await showTimePicker(context: context, initialTime: _time);
-    if (picked != null && picked != _time)
+    if (picked != _time) {
       print("data selectied :${_time.toString()}");
+    }
     setState(() {
       _time = picked;
     });
-    if (picked == null) _time = TimeOfDay.now();
   }
 
   @override

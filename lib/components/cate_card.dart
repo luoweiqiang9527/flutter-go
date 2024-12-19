@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../resources/widget_name_to_icon.dart';
 import '../components/widget_item_container.dart';
 import '../model/widget.dart';
+import '../resources/widget_name_to_icon.dart';
 
 class CateCard extends StatefulWidget {
   final CategoryComponent category;
@@ -91,7 +91,7 @@ class _CateCardState extends State<CateCard> {
   }
 
   Widget _buildWidgetContainer() {
-    if (this._firstChildList.length == 0) {
+    if (_firstChildList.isEmpty) {
       return Container();
     }
     return Container(
@@ -102,7 +102,7 @@ class _CateCardState extends State<CateCard> {
             alignment: Alignment.bottomRight),
       ),
       child: WidgetItemContainer(
-          commonItems: this._firstChildList, columnCount: 3),
+          commonItems: _firstChildList, columnCount: 3),
     );
   }
 }

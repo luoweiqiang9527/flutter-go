@@ -11,8 +11,8 @@ import './DropdownMenuItem/index.dart' as DropdownMenuItem;
 import './PopupMenuButton/index.dart' as PopupMenuButton;
 import './PopupMenuDivider/index.dart' as PopupMenuDivider;
 import './PopupMenuEntry/index.dart' as PopupMenuEntry;
-import './PopupMenuItemState/index.dart' as PopupMenuItemState;
 import './PopupMenuItem/index.dart' as PopupMenuItem;
+import './PopupMenuItemState/index.dart' as PopupMenuItemState;
 
 List<WidgetPoint> widgetPoints = [
   WidgetPoint(

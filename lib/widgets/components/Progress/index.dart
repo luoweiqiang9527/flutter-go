@@ -1,8 +1,8 @@
 import "package:flutter/material.dart";
 
 import '../../../model/widget.dart';
-import 'LinearProgressIndicator/index.dart' as LinearProgressIndicator;
 import 'CircularProgressIndicator/index.dart' as CircularProgressIndicator;
+import 'LinearProgressIndicator/index.dart' as LinearProgressIndicator;
 
 List<WidgetPoint> widgetPoints = [
   WidgetPoint(

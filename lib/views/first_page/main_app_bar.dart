@@ -53,14 +53,8 @@ class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
     this.titleSpacing = NavigationToolbar.kMiddleSpacing,
     this.toolbarOpacity = 1.0,
     this.bottomOpacity = 1.0,
-  })  : assert(automaticallyImplyLeading != null),
-        assert(elevation != null),
-        assert(primary != null),
-        assert(titleSpacing != null),
-        assert(toolbarOpacity != null),
-        assert(bottomOpacity != null),
-        preferredSize = Size.fromHeight(
-            kToolbarHeight + (bottom?.preferredSize?.height ?? 0.0)),
+  })  : preferredSize = Size.fromHeight(
+            kToolbarHeight + (bottom.preferredSize.height ?? 0.0)),
         super(key: key);
 
   /// A widget to display before the [title].
@@ -207,14 +201,13 @@ class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
   final Size preferredSize;
 
   bool _getEffectiveCenterTitle(ThemeData themeData) {
-    if (centerTitle != null) return centerTitle;
-    assert(themeData.platform != null);
+    return centerTitle;
     switch (themeData.platform) {
       case TargetPlatform.android:
       case TargetPlatform.fuchsia:
         return false;
       case TargetPlatform.iOS:
-        return actions == null || actions.length < 2;
+        return actions.length < 2;
     }
     return null;
   }
@@ -237,32 +230,34 @@ class _MyAppBarState extends State<MyAppBar> {
     assert(!widget.primary || debugCheckHasMediaQuery(context));
     assert(debugCheckHasMaterialLocalizations(context));
     final ThemeData themeData = Theme.of(context);
-    final ScaffoldState scaffold = Scaffold.of(context, nullOk: true);
+    final ScaffoldState scaffold = Scaffold.maybeOf(context);
     final ModalRoute<dynamic> parentRoute = ModalRoute.of(context);
 
-    final bool hasDrawer = scaffold?.hasDrawer ?? false;
-    final bool hasEndDrawer = scaffold?.hasEndDrawer ?? false;
-    final bool canPop = parentRoute?.canPop ?? false;
+    final bool hasDrawer = scaffold.hasDrawer ?? false;
+    final bool hasEndDrawer = scaffold.hasEndDrawer ?? false;
+    final bool canPop = parentRoute.canPop ?? false;
     final bool useCloseButton =
         parentRoute is PageRoute<dynamic> && parentRoute.fullscreenDialog;
 
     IconThemeData appBarIconTheme =
         widget.iconTheme ?? themeData.primaryIconTheme;
     TextStyle centerStyle =
-        widget.textTheme?.title ?? themeData.primaryTextTheme.title;
+        widget.textTheme.titleLarge ?? themeData.primaryTextTheme.titleLarge;
     TextStyle sideStyle =
-        widget.textTheme?.body1 ?? themeData.primaryTextTheme.body1;
+        widget.textTheme.bodyMedium ?? themeData.primaryTextTheme.bodyMedium;
 
     if (widget.toolbarOpacity != 1.0) {
       final double opacity =
           const Interval(0.25, 1.0, curve: Curves.fastOutSlowIn)
               .transform(widget.toolbarOpacity);
-      if (centerStyle?.color != null)
+      if (centerStyle.color != null) {
         centerStyle =
             centerStyle.copyWith(color: centerStyle.color.withOpacity(opacity));
-      if (sideStyle?.color != null)
+      }
+      if (sideStyle.color != null) {
         sideStyle =
             sideStyle.copyWith(color: sideStyle.color.withOpacity(opacity));
+      }
       appBarIconTheme = appBarIconTheme.copyWith(
           opacity: opacity * (appBarIconTheme.opacity ?? 1.0));
     }
@@ -278,42 +273,39 @@ class _MyAppBarState extends State<MyAppBar> {
           tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
         );
       } else {
-        if (canPop)
+        if (canPop) {
           leading = useCloseButton ? const CloseButton() : const BackButton();
+        }
       }
     }
-    if (leading != null) {
-      leading = ConstrainedBox(
-        constraints: const BoxConstraints.tightFor(width: _kLeadingWidth),
-        child: leading,
-      );
-    }
-
+    leading = ConstrainedBox(
+      constraints: const BoxConstraints.tightFor(width: _kLeadingWidth),
+      child: leading,
+    );
+  
     Widget title = widget.title;
-    if (title != null) {
-      bool namesRoute;
-      switch (defaultTargetPlatform) {
-        case TargetPlatform.android:
-        case TargetPlatform.fuchsia:
-          namesRoute = true;
-          break;
-        case TargetPlatform.iOS:
-          break;
-      }
-      title = DefaultTextStyle(
-        style: centerStyle,
-        softWrap: false,
-        overflow: TextOverflow.ellipsis,
-        child: Semantics(
-          namesRoute: namesRoute,
-          child: title,
-          header: true,
-        ),
-      );
+    bool namesRoute;
+    switch (defaultTargetPlatform) {
+      case TargetPlatform.android:
+      case TargetPlatform.fuchsia:
+        namesRoute = true;
+        break;
+      case TargetPlatform.iOS:
+        break;
     }
-
+    title = DefaultTextStyle(
+      style: centerStyle,
+      softWrap: false,
+      overflow: TextOverflow.ellipsis,
+      child: Semantics(
+        namesRoute: namesRoute,
+        child: title,
+        header: true,
+      ),
+    );
+  
     Widget actions;
-    if (widget.actions != null && widget.actions.isNotEmpty) {
+    if (widget.actions.isNotEmpty) {
       actions = Row(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -349,28 +341,26 @@ class _MyAppBarState extends State<MyAppBar> {
         ),
       ),
     );
-    if (widget.bottom != null) {
-      appBar = Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Flexible(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxHeight: kToolbarHeight),
-              child: appBar,
-            ),
+    appBar = Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Flexible(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxHeight: kToolbarHeight),
+            child: appBar,
           ),
-          widget.bottomOpacity == 1.0
-              ? widget.bottom
-              : Opacity(
-                  opacity:
-                      const Interval(0.25, 1.0, curve: Curves.fastOutSlowIn)
-                          .transform(widget.bottomOpacity),
-                  child: widget.bottom,
-                ),
-        ],
-      );
-    }
-
+        ),
+        widget.bottomOpacity == 1.0
+            ? widget.bottom
+            : Opacity(
+                opacity:
+                    const Interval(0.25, 1.0, curve: Curves.fastOutSlowIn)
+                        .transform(widget.bottomOpacity),
+                child: widget.bottom,
+              ),
+      ],
+    );
+  
     // The padding applies to the toolbar and tabbar, not the flexible space.
     if (widget.primary) {
       appBar = SafeArea(
@@ -384,16 +374,14 @@ class _MyAppBarState extends State<MyAppBar> {
       child: appBar,
     );
 
-    if (widget.flexibleSpace != null) {
-      appBar = Stack(
-        fit: StackFit.passthrough,
-        children: <Widget>[
-          widget.flexibleSpace,
-          appBar,
-        ],
-      );
-    }
-    final Brightness brightness =
+    appBar = Stack(
+      fit: StackFit.passthrough,
+      children: <Widget>[
+        widget.flexibleSpace,
+        appBar,
+      ],
+    );
+      final Brightness brightness =
         widget.brightness ?? themeData.primaryColorBrightness;
     final SystemUiOverlayStyle overlayStyle = brightness == Brightness.dark
         ? SystemUiOverlayStyle.light

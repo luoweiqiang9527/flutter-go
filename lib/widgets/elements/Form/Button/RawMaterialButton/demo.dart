@@ -16,8 +16,7 @@ class RawMaterialButtonDefault extends StatelessWidget {
   final bool isDisabled;
 
   const RawMaterialButtonDefault([this.isDisabled = true])
-      : assert(isDisabled != null),
-        super();
+      : super();
 
   @override
   Widget build(BuildContext context) {
@@ -68,10 +67,8 @@ class RawMaterialButtonCustom extends StatelessWidget {
         // RawMaterialButton 的点击事件
         onPressed: () {
           // Perform some action
-          if (_onPressed is VoidCallback) {
-            _onPressed();
-          }
-        });
+          _onPressed();
+                });
   }
 }
 

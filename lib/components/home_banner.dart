@@ -81,7 +81,7 @@ class _BannerState extends State<HomeBanner> {
   List<Widget> _buildItems() {
     // 排列轮播数组
     List<Widget> items = [];
-    if (widget.bannerStories.length > 0) {
+    if (widget.bannerStories.isNotEmpty) {
       // 头部添加一个尾部Item，模拟循环
       items.add(
           _buildItem(widget.bannerStories[widget.bannerStories.length - 1]));
@@ -99,10 +99,8 @@ class _BannerState extends State<HomeBanner> {
     return GestureDetector(
       onTap: () {
         // 按下
-        if (widget.onTap != null) {
-          widget.onTap(story);
-        }
-      },
+        widget.onTap(story);
+            },
       child: Stack(
         fit: StackFit.expand,
         children: <Widget>[

@@ -6,7 +6,6 @@
 /// Describle:Colum describe
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class ContainerDefault extends StatelessWidget {
   @override
@@ -50,7 +49,7 @@ class ContainerDefaultB extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       constraints: BoxConstraints.expand(
-        height: Theme.of(context).textTheme.display1.fontSize * 1.1 + 200.0,
+        height: Theme.of(context).textTheme.headlineMedium.fontSize * 1.1 + 200.0,
       ),
       padding: const EdgeInsets.all(8.0),
       color: Colors.teal.shade700,
@@ -58,7 +57,7 @@ class ContainerDefaultB extends StatelessWidget {
       child: Text('Hello World',
           style: Theme.of(context)
               .textTheme
-              .display1
+              .headlineMedium
               .copyWith(color: Colors.white)),
       foregroundDecoration: BoxDecoration(
         image: DecorationImage(

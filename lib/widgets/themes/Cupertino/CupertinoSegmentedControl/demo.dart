@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 class CupertinoSegmentedControlDemo extends StatefulWidget {
   _Demo createState() => _Demo();
@@ -11,7 +10,7 @@ class _Demo extends State<CupertinoSegmentedControlDemo> {
   Widget build(BuildContext context) {
     return CupertinoSegmentedControl(
       onValueChanged: (v) {
-        this.setState(() {
+        setState(() {
           value = v;
         });
       },

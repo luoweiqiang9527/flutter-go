@@ -1,15 +1,15 @@
 import 'PullToRefresh_chenfeihu_cd9b8b80_52ae_4241_9c8a_5c9e1f92b096/index.dart'
     as StandardPage_PullToRefresh_cd9b8b80_52ae_4241_9c8a_5c9e1f92b096;
-import 'local_hnaxu_5d7178d0_42ae_4241_9c8a_5c9e1f92b096/index.dart'
-    as StandardPage_local_5d7178d0_42ae_4241_9c8a_5c9e1f92b096;
-import 'test_abc_84f38e00_42ae_4241_9c8a_5c9e1f92b096/index.dart'
-    as StandardPage_test_84f38e00_42ae_4241_9c8a_5c9e1f92b096;
-import 'standard_sanfan_ee4feb8e_32ae_4241_9c8a_5c9e1f92b096/index.dart'
-    as StandardPage_standard_ee4feb8e_32ae_4241_9c8a_5c9e1f92b096;
-import 'standard_for_slider_sanfan_8ab2b5c2_42ae_4241_9c8a_5c9e1f92b096/index.dart'
-    as StandardPage_standard_for_slider_8ab2b5c2_42ae_4241_9c8a_5c9e1f92b096;
 import 'RangeSlider_hanxu_cbffbf7c_52ae_4241_9c8a_5c9e1f92b096/index.dart'
     as StandardPage_RangeSlider_cbffbf7c_52ae_4241_9c8a_5c9e1f92b096;
+import 'local_hnaxu_5d7178d0_42ae_4241_9c8a_5c9e1f92b096/index.dart'
+    as StandardPage_local_5d7178d0_42ae_4241_9c8a_5c9e1f92b096;
+import 'standard_for_slider_sanfan_8ab2b5c2_42ae_4241_9c8a_5c9e1f92b096/index.dart'
+    as StandardPage_standard_for_slider_8ab2b5c2_42ae_4241_9c8a_5c9e1f92b096;
+import 'standard_sanfan_ee4feb8e_32ae_4241_9c8a_5c9e1f92b096/index.dart'
+    as StandardPage_standard_ee4feb8e_32ae_4241_9c8a_5c9e1f92b096;
+import 'test_abc_84f38e00_42ae_4241_9c8a_5c9e1f92b096/index.dart'
+    as StandardPage_test_84f38e00_42ae_4241_9c8a_5c9e1f92b096;
 
 class StandardPages {
   Map<String, String> standardPages;

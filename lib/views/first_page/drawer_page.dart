@@ -1,18 +1,19 @@
 import 'dart:async';
 
+import 'package:event_bus/event_bus.dart';
 import 'package:fluro/fluro.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_go/components/single_theme_color.dart';
-import 'package:flutter_go/model/user_info.dart';
-import 'package:share/share.dart';
-import 'package:flutter_go/utils/data_utils.dart';
-import 'package:flutter_go/routers/application.dart';
-import 'package:flutter_go/routers/routers.dart';
-import './search_page.dart';
 import 'package:flutter_go/event/event_bus.dart';
 import 'package:flutter_go/event/event_model.dart';
-import 'package:event_bus/event_bus.dart';
+import 'package:flutter_go/model/user_info.dart';
+import 'package:flutter_go/routers/application.dart';
+import 'package:flutter_go/routers/routers.dart';
+import 'package:flutter_go/utils/data_utils.dart';
+import 'package:share/share.dart';
+
+import './search_page.dart';
 
 const List<Map<String, dynamic>> defalutThemeColor = [
   {'cnName': 'Flutter篮', 'value': 0xFF3391EA},
@@ -34,7 +35,7 @@ class _DrawerPageState extends State<DrawerPage> {
   bool hasLogin;
 
   _DrawerPageState() {
-    final eventBus = new EventBus();
+    final eventBus = EventBus();
     ApplicationEvent.event = eventBus;
   }
 
@@ -44,7 +45,7 @@ class _DrawerPageState extends State<DrawerPage> {
     ApplicationEvent.event.on<UserSettingThemeColorEvent>().listen((event) {
       print('接收到的 event ${event.settingThemeColor}');
     });
-    hasLogin = this.widget.userInfo.id != 0;
+    hasLogin = widget.userInfo.id != 0;
   }
 
   Future<AlertDialog> logoutDialog(BuildContext context) {
@@ -92,7 +93,6 @@ class _DrawerPageState extends State<DrawerPage> {
   }
 
   void pushPage(BuildContext context, Widget page, {String pageName}) {
-    if (context == null || page == null) return;
     Navigator.push(context, CupertinoPageRoute<void>(builder: (ctx) => page));
   }
 
@@ -140,9 +140,9 @@ class _DrawerPageState extends State<DrawerPage> {
             ),
           ),
           decoration: BoxDecoration(
-            image: new DecorationImage(
+            image: DecorationImage(
               fit: BoxFit.cover,
-              image: new NetworkImage(hasLogin
+              image: NetworkImage(hasLogin
                   ? widget.userInfo.avatarPic
                   : 'https://hbimg.huabanimg.com/9bfa0fad3b1284d652d370fa0a8155e1222c62c0bf9d-YjG0Vt_fw658'),
             ),
@@ -193,7 +193,7 @@ class _DrawerPageState extends State<DrawerPage> {
         //     buildSimpleDialog(context);
         //   },
         // ),
-        new Divider(),
+        Divider(),
 
         ListTile(
           leading: Icon(
@@ -235,7 +235,7 @@ class _DrawerPageState extends State<DrawerPage> {
             Share.share('https://flutter-go.pub/website/');
           },
         ),
-        new Divider(),
+        Divider(),
         ListTile(
           leading: Icon(
             hasLogin ? Icons.exit_to_app : Icons.supervised_user_circle,

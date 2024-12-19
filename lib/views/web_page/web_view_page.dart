@@ -6,12 +6,11 @@
 import 'dart:core';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
-
+import 'package:flutter_go/api/api.dart';
 /// import 'package:flutter_go/model/collection.dart';
 import 'package:flutter_go/event/event_bus.dart';
 import 'package:flutter_go/event/event_model.dart';
-import 'package:flutter_go/api/api.dart';
+import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
 class WebViewPage extends StatefulWidget {
   final String url;
@@ -22,7 +21,7 @@ class WebViewPage extends StatefulWidget {
 }
 
 class _WebViewPageState extends State<WebViewPage> {
-  final flutterWebviewPlugin = new FlutterWebviewPlugin();
+  final flutterWebviewPlugin = FlutterWebviewPlugin();
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -46,20 +45,16 @@ class _WebViewPageState extends State<WebViewPage> {
             token = queryNote.substring(eqIndex + 1);
           }
         }
-        if (ApplicationEvent.event != null) {
-          ApplicationEvent.event
-              .fire(UserGithubOAuthEvent(loginName, token, true));
-        }
-        print('ready close');
+        ApplicationEvent.event
+            .fire(UserGithubOAuthEvent(loginName, token, true));
+              print('ready close');
 
         flutterWebviewPlugin.close();
         // 验证成功
       } else if (url.indexOf('${Api.BASE_URL}loginFail') == 0) {
         // 验证失败
-        if (ApplicationEvent.event != null) {
-          ApplicationEvent.event.fire(UserGithubOAuthEvent('', '', true));
-        }
-        flutterWebviewPlugin.close();
+        ApplicationEvent.event.fire(UserGithubOAuthEvent('', '', true));
+              flutterWebviewPlugin.close();
       }
     });
   }

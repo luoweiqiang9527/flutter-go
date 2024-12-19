@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_go/model/widget.dart';
-import './Stack/index.dart' as Stack;
+
 import './IndexedStack/index.dart' as IndexedStack;
+import './Stack/index.dart' as Stack;
 
 List<WidgetPoint> widgetPoints = [
   WidgetPoint(

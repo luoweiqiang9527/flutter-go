@@ -19,7 +19,7 @@ class Sql extends BaseModel {
 
   // sdf
   Future<List> get() async {
-    return await this.query(tableName);
+    return await query(tableName);
   }
 
   String getTableName() {
@@ -27,18 +27,17 @@ class Sql extends BaseModel {
   }
 
   Future<int> delete(String value, String key) async {
-    return await this
-        .db
+    return db
         .delete(tableName, where: '$key = ?', whereArgs: [value]);
   }
 
   Future<int> deleteAll() async {
-    return await this.db.delete(tableName);
+    return db.delete(tableName);
   }
 
   Future<List> getByCondition({Map<dynamic, dynamic> conditions}) async {
-    if (conditions == null || conditions.isEmpty) {
-      return this.get();
+    if (conditions.isEmpty) {
+      return get();
     }
     String stringConditions = '';
 
@@ -60,11 +59,11 @@ class Sql extends BaseModel {
       index++;
     });
     // print("this is string condition for sql > $stringConditions");
-    return await this.query(tableName, where: stringConditions);
+    return await query(tableName, where: stringConditions);
   }
 
   Future<Map<String, dynamic>> insert(Map<String, dynamic> json) async {
-    var id = await this.db.insert(tableName, json);
+    var id = await db.insert(tableName, json);
     json['id'] = id;
     return json;
   }
@@ -77,8 +76,8 @@ class Sql extends BaseModel {
   ///
   Future<List> search(
       {Map<String, dynamic> conditions, String mods = 'Or'}) async {
-    if (conditions == null || conditions.isEmpty) {
-      return this.get();
+    if (conditions.isEmpty) {
+      return get();
     }
     String stringConditions = '';
     int index = 0;
@@ -100,6 +99,6 @@ class Sql extends BaseModel {
       index++;
     });
 
-    return await this.query(tableName, where: stringConditions);
+    return await query(tableName, where: stringConditions);
   }
 }

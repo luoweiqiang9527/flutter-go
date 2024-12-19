@@ -21,13 +21,12 @@ class _YearPickerDemoState extends State<YearPickerDemo> {
         initialDate: _date,
         firstDate: DateTime(2015, 8),
         lastDate: DateTime(2101));
-    if (picked != null && picked != _date)
+    if (picked != _date) {
       print("data selectied :${_date.toString()}");
+    }
     setState(() {
       _date = picked;
     });
-
-    if (picked == null) _date = DateTime.now();
   }
 
   @override

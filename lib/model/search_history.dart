@@ -25,17 +25,12 @@ class SearchHistoryList {
   static List<SearchHistory> _searchHistoryList = [];
 
   static SearchHistoryList _getInstance(SpUtil sp) {
-    if (_instance == null) {
-      _sp = sp;
-      String json = sp.get(SharedPreferencesKeys.searchHistory);
-      _instance = new SearchHistoryList.fromJSON(json);
-    }
     return _instance;
   }
 
   factory SearchHistoryList([SpUtil sp]) {
     if (sp == null && _instance == null) {
-      print(new ArgumentError(
+      print(ArgumentError(
           ['SearchHistoryList need instantiatied SpUtil at first timte ']));
     }
     return _getInstance(sp);
@@ -48,14 +43,11 @@ class SearchHistoryList {
 
   SearchHistoryList.fromJSON(String jsonData) {
     _searchHistoryList = [];
-    if (jsonData == null) {
-      return;
-    }
     List jsonList = json.decode(jsonData);
-    jsonList.forEach((value) {
+    for (var value in jsonList) {
       _searchHistoryList.add(SearchHistory(
           name: value['name'], targetRouter: value['targetRouter']));
-    });
+    }
   }
 
   List<SearchHistory> getList() {
@@ -68,7 +60,7 @@ class SearchHistoryList {
   }
 
   save() {
-    _sp.putString(SharedPreferencesKeys.searchHistory, this.toJson());
+    _sp.putString(SharedPreferencesKeys.searchHistory, toJson());
   }
 
   add(SearchHistory item) {
@@ -87,14 +79,14 @@ class SearchHistoryList {
 
   toJson() {
     List<Map<String, String>> jsonList = [];
-    _searchHistoryList.forEach((SearchHistory value) {
+    for (var value in _searchHistoryList) {
       jsonList.add({'name': value.name, 'targetRouter': value.targetRouter});
-    });
+    }
     return json.encode(jsonList);
   }
 
   @override
   String toString() {
-    return this.toJson();
+    return toJson();
   }
 }

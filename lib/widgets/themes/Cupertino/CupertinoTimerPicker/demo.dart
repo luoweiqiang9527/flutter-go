@@ -6,7 +6,6 @@
 /// target:  CupertionTabBar
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 class CupertinoTimerPickerDemo extends StatefulWidget {
   _Demo createState() => _Demo();

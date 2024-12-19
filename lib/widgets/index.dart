@@ -1,5 +1,5 @@
-import 'elements/index.dart' as elements;
 import 'components/index.dart' as components;
+import 'elements/index.dart' as elements;
 import 'themes/index.dart' as themes;
 
 class WidgetDemoList {

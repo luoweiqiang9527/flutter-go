@@ -16,7 +16,7 @@ class _Demo extends State<CupertinoTabScaffoldDemo> {
   int index = 0;
 
   changeIndex(int _index) {
-    this.setState(() {
+    setState(() {
       index = _index;
     });
   }
@@ -29,11 +29,11 @@ class _Demo extends State<CupertinoTabScaffoldDemo> {
         tabBar: CupertinoTabBar(
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              title: Text("A"),
+              label: Text("A"),
               icon: Icon(Icons.add),
             ),
             BottomNavigationBarItem(
-              title: Text("B"),
+              label: Text("B"),
               icon: Icon(Icons.add),
             )
           ],

@@ -19,7 +19,7 @@ class ButtonBarFullDefault extends StatefulWidget {
 class _ButtonBarFullDefault extends State {
   @override
   Widget build(BuildContext context) {
-    return ButtonBar(
+    return OverflowBar(
         // ...  // 如果没有,就是不需要有状态的 StatefulWidget
         );
   }
@@ -40,7 +40,7 @@ class ButtonBarLessDefault extends StatelessWidget {
         child: Scrollbar(
             child: ListView(scrollDirection: Axis.horizontal, // 水平listView
                 children: <Widget>[
-              ButtonBar(
+              OverflowBar(
                 alignment: MainAxisAlignment
                     .spaceAround, //布局方向，默认MainAxisAlignment.end
                 mainAxisSize: MainAxisSize.max, //主轴大小，默认MainAxisSize.max
@@ -63,7 +63,7 @@ class ButtonBarLessDefault extends StatelessWidget {
                   ),
                 ],
               ),
-              ButtonBar(
+              OverflowBar(
                 alignment: MainAxisAlignment.end, //布局方向，默认MainAxisAlignment.end
                 mainAxisSize: MainAxisSize.min, //主轴大小，默认MainAxisSize.max
                 children: <Widget>[

@@ -6,7 +6,6 @@
 /// target: CupertinoPageRoute 的示例
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 // CupertinoPageRoute 默认的实例
 class CupertinoPageRouteFullDefault extends StatefulWidget {
@@ -46,11 +45,11 @@ class _CupertinoPageRouteFullDefault extends State {
               items: const <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
                   icon: Icon(CupertinoIcons.share),
-                  title: Text('无滑动的切换1'),
+                  label: Text('无滑动的切换1'),
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(CupertinoIcons.share),
-                  title: Text('无滑动的切换2'),
+                  label: Text('无滑动的切换2'),
                 ),
               ],
             ),

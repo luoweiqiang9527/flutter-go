@@ -1,14 +1,15 @@
-import 'package:fluro/fluro.dart';
+import 'dart:core';
 
+import 'package:fluro/fluro.dart';
 /// @Author: 一凨
 /// @Date: 2019-01-14 17:53:54
 /// @Last Modified by: 一凨
 /// @Last Modified time: 2019-01-14 17:57:51
 
 import 'package:flutter/material.dart';
+
 import '../routers/application.dart';
 import '../routers/routers.dart';
-import 'dart:core';
 
 class ListViewItem extends StatelessWidget {
   final String itemUrl;
@@ -23,7 +24,7 @@ class ListViewItem extends StatelessWidget {
     return Card(
       color: Colors.white,
       elevation: 4.0,
-      margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+      margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
       child: ListTile(
         onTap: () {
           // _launchURL(itemUrl, context);

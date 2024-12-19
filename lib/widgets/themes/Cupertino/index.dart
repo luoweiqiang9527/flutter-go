@@ -11,8 +11,8 @@ import './CupertinoPageScaffold/index.dart' as CupertinoPageScaffold;
 import './CupertinoPicker/index.dart' as CupertinoPicker;
 import './CupertinoPopupSurface/index.dart' as CupertinoPopupSurface;
 import './CupertinoScrollbar/index.dart' as CupertinoScrollbar;
-import './CupertinoSlider/index.dart' as CupertinoSlider;
 import './CupertinoSegmentedControl/index.dart' as CupertinoSegmentedControl;
+import './CupertinoSlider/index.dart' as CupertinoSlider;
 import './CupertinoSliverNavigationBar/index.dart'
     as CupertinoSliverNavigationBar;
 import './CupertinoSwitch/index.dart' as CupertinoSwitch;

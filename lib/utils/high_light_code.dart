@@ -145,9 +145,10 @@ class DartSyntaxHighlighter extends Highlighter {
       int currentPosition = 0;
 
       for (_HighlightSpan span in _spans) {
-        if (currentPosition != span.start)
+        if (currentPosition != span.start) {
           formattedText
               .add(TextSpan(text: _src.substring(currentPosition, span.start)));
+        }
 
         formattedText.add(TextSpan(
             style: span.textStyle(_style), text: span.textForSpan(_src)));
@@ -155,9 +156,10 @@ class DartSyntaxHighlighter extends Highlighter {
         currentPosition = span.end;
       }
 
-      if (currentPosition != _src.length)
+      if (currentPosition != _src.length) {
         formattedText
             .add(TextSpan(text: _src.substring(currentPosition, _src.length)));
+      }
 
       return TextSpan(style: _style.baseStyle, children: formattedText);
     } else {
@@ -278,9 +280,9 @@ class DartSyntaxHighlighter extends Highlighter {
         String word = _scanner.lastMatch[0];
         if (word.startsWith('_')) word = word.substring(1);
 
-        if (_keywords.contains(word))
+        if (_keywords.contains(word)) {
           type = _HighlightType.keyword;
-        else if (_builtInTypes.contains(word))
+        } else if (_builtInTypes.contains(word))
           type = _HighlightType.keyword;
         else if (_firstLetterIsUpperCase(word))
           type = _HighlightType.klass;
@@ -289,11 +291,9 @@ class DartSyntaxHighlighter extends Highlighter {
             _firstLetterIsUpperCase(word.substring(1)))
           type = _HighlightType.constant;
 
-        if (type != null) {
-          _spans.add(_HighlightSpan(
-              type, _scanner.lastMatch.start, _scanner.lastMatch.end));
-        }
-      }
+        _spans.add(_HighlightSpan(
+            type, _scanner.lastMatch.start, _scanner.lastMatch.end));
+            }
 
       // Check if this loop did anything
       if (lastLoopPosition == _scanner.position) {
@@ -348,9 +348,9 @@ class _HighlightSpan {
   }
 
   TextStyle textStyle(SyntaxHighlighterStyle style) {
-    if (type == _HighlightType.number)
+    if (type == _HighlightType.number) {
       return style.numberStyle;
-    else if (type == _HighlightType.comment)
+    } else if (type == _HighlightType.comment)
       return style.commentStyle;
     else if (type == _HighlightType.keyword)
       return style.keywordStyle;

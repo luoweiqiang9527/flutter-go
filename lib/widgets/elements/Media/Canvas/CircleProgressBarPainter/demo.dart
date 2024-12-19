@@ -1,11 +1,3 @@
-/// Created with Android Studio.
-/// User: 一晟
-/// Date: 2019/1/20
-/// Time: 上午11:34
-/// email: zhu.yan@alibaba-inc.com
-/// target: CircleProgressBarPainter 的示例
-
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
@@ -31,7 +23,7 @@ class CustomViewPageState extends State<CustomViewPage>
 
     _controller.addListener(() {
       if (mounted) {
-        this.setState(() {});
+        setState(() {});
       }
     });
     onAnimationStart();

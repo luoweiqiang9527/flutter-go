@@ -48,10 +48,10 @@ class CollectionControlModel {
   Future<List<Collection>> getAllCollection() async {
     List list = await sql.getByCondition();
     List<Collection> resultList = [];
-    list.forEach((item) {
+    for (var item in list) {
       print('collection item =>> $item');
       resultList.add(Collection.fromJSON(item));
-    });
+    }
     return resultList;
   }
 
@@ -69,11 +69,11 @@ class CollectionControlModel {
 
   // 删除
   Future deleteByName(String name) async {
-    return await sql.delete(name, 'name');
+    return sql.delete(name, 'name');
   }
 
   // 通过path删除
   Future deleteByPath(String path) async {
-    return await sql.delete(path, 'router');
+    return sql.delete(path, 'router');
   }
 }

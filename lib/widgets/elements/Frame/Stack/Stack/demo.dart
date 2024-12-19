@@ -16,8 +16,7 @@ class StackDefault extends StatelessWidget {
       children: <Widget>[
         Stack(
           //fit :定义如何设置non-positioned节点尺寸
-          fit: StackFit.loose,
-          overflow: Overflow.clip,
+          clipBehavior: Clip.hardEdge, fit: StackFit.loose,
           textDirection: TextDirection.ltr,
           alignment: Alignment.center,
           children: [
@@ -49,8 +48,7 @@ class StackDefault2 extends StatelessWidget {
       children: <Widget>[
         Stack(
           //fit :定义如何设置non-positioned节点尺寸
-          fit: StackFit.loose,
-          overflow: Overflow.clip,
+          clipBehavior: Clip.hardEdge, fit: StackFit.loose,
           textDirection: TextDirection.ltr,
           alignment: Alignment.center,
           children: [
@@ -119,8 +117,7 @@ class StackLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      overflow: Overflow.visible,
-      alignment: const Alignment(0.2, 0.6),
+      clipBehavior: Clip.none, alignment: const Alignment(0.2, 0.6),
       children: <Widget>[
         CircleAvatar(
           backgroundColor: Color(0xfff48fb1),

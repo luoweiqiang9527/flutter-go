@@ -33,10 +33,11 @@ class _DemoState extends State<Demo> {
 
   void _indexAdd() {
     setState(() {
-      if (currIndex > 4)
+      if (currIndex > 4) {
         currIndex = 0;
-      else
+      } else {
         currIndex++;
+      }
     });
   }
 

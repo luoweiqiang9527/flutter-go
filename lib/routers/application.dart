@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fluro/fluro.dart';
 import 'package:flutter_go/utils/shared_preferences.dart';
 
 import '../model/widget.dart';

@@ -6,9 +6,9 @@
 /// target: AppBar 的示例
 
 import 'package:flutter/material.dart';
+import 'package:flutter_go/components/widget_demo.dart';
 
 import './demo.dart' as AppBarDemo;
-import 'package:flutter_go/components/widget_demo.dart';
 
 const String _Text0 = """### **简介**
 > AppBar “应用栏”

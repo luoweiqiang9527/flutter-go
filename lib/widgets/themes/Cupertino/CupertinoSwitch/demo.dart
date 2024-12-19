@@ -20,7 +20,7 @@ class _Demo extends State<CupertinoSwitchDemo> {
       child: ListTile(
         title: Text('CupertinoSwitch'),
         trailing: CupertinoSwitch(
-          activeColor: Colors.yellow,
+          activeTrackColor: Colors.yellow,
           value: _lights,
           onChanged: (bool value) {
             setState(() {

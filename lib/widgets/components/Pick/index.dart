@@ -1,11 +1,11 @@
 import "package:flutter/material.dart";
 
 import '../../../model/widget.dart';
-import 'YearPicker/index.dart' as YearPicker;
+import 'CityPIcker/index.dart' as CityPicker;
 import 'DayPicker/index.dart' as DayPicker;
 import 'MonthPicker/index.dart' as MonthPicker;
 import 'ShowdatePicker/index.dart' as ShowdatePicker;
-import 'CityPIcker/index.dart' as CityPicker;
+import 'YearPicker/index.dart' as YearPicker;
 
 List<WidgetPoint> widgetPoints = [
   WidgetPoint(

@@ -39,15 +39,13 @@ class _AnimatedListFullDefault extends State<AnimatedListFullDefault> {
 
   // Remove the selected item from the list model.
   void remove() {
-    if (_selectedItem != null) {
-      _list.removeAt(_list.indexOf(_selectedItem));
-      if (mounted) {
-        setState(() {
-          _selectedItem = null;
-        });
-      }
+    _list.removeAt(_list.indexOf(_selectedItem));
+    if (mounted) {
+      setState(() {
+        _selectedItem = null;
+      });
     }
-  }
+    }
 
   Widget _buildItem(
       BuildContext context, int index, Animation<double> animation) {
@@ -94,10 +92,8 @@ class CardItem extends StatelessWidget {
       @required this.animation,
       this.onTap,
       @required this.item,
-      this.selected: false})
-      : assert(animation != null),
-        assert(item != null && item >= 0),
-        assert(selected != null),
+      this.selected = false})
+      : assert(item >= 0),
         super(key: key);
 
   final Animation<double> animation;
@@ -107,9 +103,10 @@ class CardItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextStyle textStyle = Theme.of(context).textTheme.display1;
-    if (selected)
+    TextStyle textStyle = Theme.of(context).textTheme.headlineMedium;
+    if (selected) {
       textStyle = textStyle.copyWith(color: Colors.lightGreenAccent[400]);
+    }
     return Padding(
       padding: const EdgeInsets.all(2.0),
       child: SizeTransition(

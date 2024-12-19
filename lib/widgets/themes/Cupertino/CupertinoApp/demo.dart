@@ -55,7 +55,7 @@ class _CupertinoAppFullDefault extends State {
             return MediaQuery(
                 // 当构建一个Widget前,调用一般做字体大小，方向，主题颜色等配置
                 //字体大小
-                data: MediaQuery.of(context).copyWith(textScaleFactor: 1.4),
+                data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(1.4)),
                 child: child);
           },
           checkerboardOffscreenLayers: false, // 打开渲染到屏幕外位图的图层的checkerboarding
@@ -130,12 +130,12 @@ class _CupertinoAppFullDefault extends State {
               BottomNavigationBarItem(
                 icon: ImageIcon(
                     AssetImage('assets/images/btn_icon_dingyuehao_normal.png')),
-                title: Text('Tab 1'),
+                label: Text('Tab 1'),
               ),
               BottomNavigationBarItem(
                 icon: ImageIcon(
                     AssetImage('assets/images/btn_icon_dingyuehao_normal.png')),
-                title: Text('Tab 2'),
+                label: Text('Tab 2'),
               ),
             ]),
         tabBuilder: (BuildContext context, int index) {

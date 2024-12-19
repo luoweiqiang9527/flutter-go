@@ -15,7 +15,7 @@ class _Demo extends State<DemoA> {
   String value = '';
 
   onChange(v) {
-    this.setState(() {
+    setState(() {
       value = v;
     });
   }
@@ -26,7 +26,7 @@ class _Demo extends State<DemoA> {
         RadioListTile<String>(
             title: const Text('A'),
             value: "A",
-            groupValue: this.value,
+            groupValue: value,
             isThreeLine: false,
             subtitle: const Text("subtitleA"),
             onChanged: onChange),
@@ -34,7 +34,7 @@ class _Demo extends State<DemoA> {
             title: const Text('B'),
             value: "B",
             subtitle: const Text("subtitleB"),
-            groupValue: this.value,
+            groupValue: value,
             onChanged: onChange),
       ],
     );

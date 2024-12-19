@@ -49,37 +49,37 @@ class MarkdownStyleSheet {
 
   /// Creates a [MarkdownStyleSheet] from the [TextStyle]s in the provided [ThemeData].
   factory MarkdownStyleSheet.fromTheme(ThemeData theme) {
-    assert(theme?.textTheme?.body1?.fontSize != null);
-    return new MarkdownStyleSheet(
+    assert(theme.textTheme.bodyMedium?.fontSize != null);
+    return MarkdownStyleSheet(
       a: const TextStyle(color: Colors.blue),
-      p: theme.textTheme.body1,
-      code: new TextStyle(
+      p: theme.textTheme.bodyMedium,
+      code: TextStyle(
           color: Colors.grey.shade700,
           fontFamily: "monospace",
-          fontSize: theme.textTheme.body1.fontSize * 0.85),
-      h1: theme.textTheme.headline,
-      h2: theme.textTheme.title,
-      h3: theme.textTheme.subhead,
-      h4: theme.textTheme.body2,
-      h5: theme.textTheme.body2,
-      h6: theme.textTheme.body2,
+          fontSize: theme.textTheme.bodyMedium.fontSize * 0.85),
+      h1: theme.textTheme.headlineSmall,
+      h2: theme.textTheme.titleLarge,
+      h3: theme.textTheme.titleMedium,
+      h4: theme.textTheme.bodyLarge,
+      h5: theme.textTheme.bodyLarge,
+      h6: theme.textTheme.bodyLarge,
       em: const TextStyle(fontStyle: FontStyle.italic),
       strong: const TextStyle(fontWeight: FontWeight.bold),
-      blockquote: theme.textTheme.body1,
-      img: theme.textTheme.body1,
+      blockquote: theme.textTheme.bodyMedium,
+      img: theme.textTheme.bodyMedium,
       blockSpacing: 8.0,
       listIndent: 32.0,
       blockquotePadding: 8.0,
-      blockquoteDecoration: new BoxDecoration(
+      blockquoteDecoration: BoxDecoration(
           color: Colors.blue.shade100,
-          borderRadius: new BorderRadius.circular(2.0)),
+          borderRadius: BorderRadius.circular(2.0)),
       codeblockPadding: 8.0,
-      codeblockDecoration: new BoxDecoration(
+      codeblockDecoration: BoxDecoration(
           color: Colors.grey.shade100,
-          borderRadius: new BorderRadius.circular(2.0)),
-      horizontalRuleDecoration: new BoxDecoration(
-        border: new Border(
-            top: new BorderSide(width: 5.0, color: Colors.grey.shade300)),
+          borderRadius: BorderRadius.circular(2.0)),
+      horizontalRuleDecoration: BoxDecoration(
+        border: Border(
+            top: BorderSide(width: 5.0, color: Colors.grey.shade300)),
       ),
     );
   }
@@ -89,36 +89,36 @@ class MarkdownStyleSheet {
   /// This constructor uses larger fonts for the headings than in
   /// [MarkdownStyle.fromTheme].
   factory MarkdownStyleSheet.largeFromTheme(ThemeData theme) {
-    return new MarkdownStyleSheet(
+    return MarkdownStyleSheet(
       a: const TextStyle(color: Colors.blue),
-      p: theme.textTheme.body1,
-      code: new TextStyle(
+      p: theme.textTheme.bodyMedium,
+      code: TextStyle(
           color: Colors.grey.shade700,
           fontFamily: "monospace",
-          fontSize: theme.textTheme.body1.fontSize * 0.85),
-      h1: theme.textTheme.display3,
-      h2: theme.textTheme.display2,
-      h3: theme.textTheme.display1,
-      h4: theme.textTheme.headline,
-      h5: theme.textTheme.title,
-      h6: theme.textTheme.subhead,
+          fontSize: theme.textTheme.bodyMedium.fontSize * 0.85),
+      h1: theme.textTheme.displayMedium,
+      h2: theme.textTheme.displaySmall,
+      h3: theme.textTheme.headlineMedium,
+      h4: theme.textTheme.headlineSmall,
+      h5: theme.textTheme.titleLarge,
+      h6: theme.textTheme.titleMedium,
       em: const TextStyle(fontStyle: FontStyle.italic),
       strong: const TextStyle(fontWeight: FontWeight.bold),
-      blockquote: theme.textTheme.body1,
-      img: theme.textTheme.body1,
+      blockquote: theme.textTheme.bodyMedium,
+      img: theme.textTheme.bodyMedium,
       blockSpacing: 8.0,
       listIndent: 32.0,
       blockquotePadding: 8.0,
-      blockquoteDecoration: new BoxDecoration(
+      blockquoteDecoration: BoxDecoration(
           color: Colors.blue.shade100,
-          borderRadius: new BorderRadius.circular(2.0)),
+          borderRadius: BorderRadius.circular(2.0)),
       codeblockPadding: 8.0,
-      codeblockDecoration: new BoxDecoration(
+      codeblockDecoration: BoxDecoration(
           color: Colors.grey.shade100,
-          borderRadius: new BorderRadius.circular(2.0)),
-      horizontalRuleDecoration: new BoxDecoration(
-        border: new Border(
-            top: new BorderSide(width: 5.0, color: Colors.grey.shade300)),
+          borderRadius: BorderRadius.circular(2.0)),
+      horizontalRuleDecoration: BoxDecoration(
+        border: Border(
+            top: BorderSide(width: 5.0, color: Colors.grey.shade300)),
       ),
     );
   }
@@ -148,7 +148,7 @@ class MarkdownStyleSheet {
     Decoration horizontalRuleDecoration,
     double textScaleFactor,
   }) {
-    return new MarkdownStyleSheet(
+    return MarkdownStyleSheet(
       a: a ?? this.a,
       p: p ?? this.p,
       code: code ?? this.code,

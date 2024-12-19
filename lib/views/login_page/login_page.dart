@@ -1,18 +1,15 @@
+import 'package:event_bus/event_bus.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:event_bus/event_bus.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-
-import 'package:flutter_go/utils/data_utils.dart';
-import 'package:flutter_go/views/home.dart';
 import 'package:flutter_go/event/event_bus.dart';
 import 'package:flutter_go/event/event_model.dart';
-
+import 'package:flutter_go/model/user_info.dart';
 import 'package:flutter_go/model/user_info_cache.dart';
 import 'package:flutter_go/routers/application.dart';
 import 'package:flutter_go/routers/routers.dart';
-import 'package:flutter_go/model/user_info.dart';
+import 'package:flutter_go/utils/data_utils.dart';
+import 'package:flutter_go/views/home.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -21,21 +18,21 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   _LoginPageState() {
-    final eventBus = new EventBus();
+    final eventBus = EventBus();
     ApplicationEvent.event = eventBus;
   }
 
   // 利用FocusNode和_focusScopeNode来控制焦点 可以通过FocusNode.of(context)来获取widget树中默认的_focusScopeNode
-  FocusNode _emailFocusNode = new FocusNode();
-  FocusNode _passwordFocusNode = new FocusNode();
-  FocusScopeNode _focusScopeNode = new FocusScopeNode();
-  UserInfoControlModel _userInfoControlModel = new UserInfoControlModel();
+  FocusNode _emailFocusNode = FocusNode();
+  FocusNode _passwordFocusNode = FocusNode();
+  FocusScopeNode _focusScopeNode = FocusScopeNode();
+  UserInfoControlModel _userInfoControlModel = UserInfoControlModel();
 
-  GlobalKey<FormState> _signInFormKey = new GlobalKey();
+  GlobalKey<FormState> _signInFormKey = GlobalKey();
   TextEditingController _userNameEditingController =
-      new TextEditingController();
+      TextEditingController();
   TextEditingController _passwordEditingController =
-      new TextEditingController();
+      TextEditingController();
 
   bool isShowPassWord = false;
   String username = '';
@@ -47,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
     super.initState();
     try {
       _userInfoControlModel.getAllInfo().then((list) {
-        if (list.length > 0) {
+        if (list.isNotEmpty) {
           UserInfo _userInfo = list[0];
           setState(() {
             _userNameEditingController.text = _userInfo.username;
@@ -119,9 +116,6 @@ class _LoginPageState extends State<LoginPage> {
                   //关联焦点
                   focusNode: _emailFocusNode,
                   onEditingComplete: () {
-                    if (_focusScopeNode == null) {
-                      _focusScopeNode = FocusScope.of(context);
-                    }
                     _focusScopeNode.requestFocus(_passwordFocusNode);
                   },
 
@@ -360,7 +354,7 @@ class _LoginPageState extends State<LoginPage> {
                       buildSignInTextForm(),
                       buildSignInButton(),
                       SizedBox(height: 15.0),
-                      new Container(
+                      Container(
                         height: 1,
                         width: MediaQuery.of(context).size.width * 0.75,
                         color: Colors.grey[400],

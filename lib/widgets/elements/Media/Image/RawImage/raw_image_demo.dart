@@ -38,11 +38,6 @@ class _RawImageDemoState extends State<RawImageDemo> {
 
   @override
   Widget build(BuildContext context) {
-    if (_img == null) {
-      return Container(
-        child: null,
-      );
-    }
     return Container(
       child: RawImage(image: _img),
     );

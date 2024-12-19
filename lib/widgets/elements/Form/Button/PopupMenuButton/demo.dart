@@ -16,8 +16,7 @@ class PopupMenuButtonDefault extends StatelessWidget {
   final String type;
 
   const PopupMenuButtonDefault([this.type = 'default1', this.isDisabled = true])
-      : assert(isDisabled != null),
-        super();
+      : super();
 
   @override
   Widget build(BuildContext context) {

@@ -29,11 +29,11 @@ class _CupertinoNavigationBarFullDefault extends State {
               items: const <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
                   icon: Icon(CupertinoIcons.share),
-                  title: Text('Tab 1'),
+                  label: Text('Tab 1'),
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(CupertinoIcons.share),
-                  title: Text('Tab 2'),
+                  label: Text('Tab 2'),
                 ),
               ],
             ),
@@ -120,15 +120,15 @@ class _CupertinoNavigationBarFullDefault extends State {
     return CupertinoTabBar(items: const <BottomNavigationBarItem>[
       BottomNavigationBarItem(
         icon: Icon(CupertinoIcons.home),
-        title: Text('Home'),
+        label: Text('Home'),
       ),
       BottomNavigationBarItem(
         icon: Icon(CupertinoIcons.conversation_bubble),
-        title: Text('Support'),
+        label: Text('Support'),
       ),
       BottomNavigationBarItem(
         icon: Icon(CupertinoIcons.profile_circled),
-        title: Text('Profile'),
+        label: Text('Profile'),
       ),
     ]);
   }

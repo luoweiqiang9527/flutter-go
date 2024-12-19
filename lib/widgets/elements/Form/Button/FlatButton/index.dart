@@ -54,7 +54,7 @@ List allFlatButtons(BuildContext context) {
   return [
     _flatText0,
     _flatText1,
-    ButtonBar(
+    OverflowBar(
       alignment: MainAxisAlignment.spaceAround,
       mainAxisSize: MainAxisSize.max,
       children: <Widget>[
@@ -64,7 +64,7 @@ List allFlatButtons(BuildContext context) {
       ],
     ),
     _flatText2,
-    ButtonBar(
+    OverflowBar(
       alignment: MainAxisAlignment.spaceAround,
       //mainAxisSize: MainAxisSize.min,
       children: <Widget>[
@@ -72,7 +72,7 @@ List allFlatButtons(BuildContext context) {
         flatButton.FlatButtonIconDefault(false),
       ],
     ),
-    ButtonBar(
+    OverflowBar(
       alignment: MainAxisAlignment.spaceAround,
       //mainAxisSize: MainAxisSize.min,
       children: <Widget>[

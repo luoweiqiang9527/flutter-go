@@ -15,7 +15,7 @@ class IconDemo extends StatelessWidget {
     return Container(
       child: Icon(
         Icons.favorite,
-        color: this.curColor,
+        color: curColor,
         size: 30.0,
       ),
     );

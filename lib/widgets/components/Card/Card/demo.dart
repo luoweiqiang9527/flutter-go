@@ -61,7 +61,7 @@ class CardLessDefault extends StatelessWidget {
           ),
           ButtonTheme.bar(
             // make buttons use the appropriate styles for cards
-            child: ButtonBar(
+            child: OverflowBar(
               children: <Widget>[
                 FlatButton(
                   child: const Text('BUY TICKETS',

@@ -8,12 +8,12 @@
 //
 
 
+import 'dart:async';
+
 import 'package:args/command_runner.dart';
+
 import '../build/build_demo_list.dart';
 import '../build/build_page_list.dart';
-
-
-import 'dart:async';
 
 
 class Build extends Command<int> {

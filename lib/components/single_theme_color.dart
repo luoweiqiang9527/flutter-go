@@ -14,13 +14,11 @@ class SingleThemeColor extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        if (ApplicationEvent.event != null) {
-          print('fire ${this.themeColor}');
-          ApplicationEvent.event
-              .fire(UserSettingThemeColorEvent(this.themeColor));
-          Navigator.of(context).pop();
-        }
-      },
+        print('fire $themeColor');
+        ApplicationEvent.event
+            .fire(UserSettingThemeColorEvent(themeColor));
+        Navigator.of(context).pop();
+            },
       child: Column(
         children: <Widget>[
           Container(
@@ -31,13 +29,13 @@ class SingleThemeColor extends StatelessWidget {
               borderRadius: BorderRadius.all(
                 Radius.circular(50),
               ),
-              color: Color(this.themeColor),
+              color: Color(themeColor),
             ),
           ),
           Text(
-            this.coloeName,
+            coloeName,
             style: TextStyle(
-              color: Color(this.themeColor),
+              color: Color(themeColor),
               fontSize: 14.0,
             ),
           )

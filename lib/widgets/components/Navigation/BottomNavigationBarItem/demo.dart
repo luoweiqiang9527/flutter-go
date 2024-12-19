@@ -24,16 +24,16 @@ class BottomNavigationBarItemLessDefault extends StatelessWidget {
             items: [
               BottomNavigationBarItem(
                   icon: Icon(Icons.laptop_chromebook),
-                  title: Text("主页"),
+                  label: Text("主页"),
                   backgroundColor: Colors.red),
               BottomNavigationBarItem(
                   icon: Icon(Icons.list),
-                  title: Text("分类"),
+                  label: Text("分类"),
                   backgroundColor: Colors.grey),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.local_grocery_store), title: Text("购物车")),
+                  icon: Icon(Icons.local_grocery_store), label: Text("购物车")),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.person), title: Text("我的"))
+                  icon: Icon(Icons.person), label: Text("我的"))
             ],
             //onTap: onTap,
             //currentIndex: page

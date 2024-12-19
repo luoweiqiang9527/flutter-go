@@ -39,14 +39,14 @@ class _BottomNavigationBarFullDefault extends State {
       selectedFontSize: 12.0,
       unselectedFontSize: 12.0,
       items: <BottomNavigationBarItem>[
-        BottomNavigationBarItem(title: Text("Home"), icon: Icon(Icons.home)),
-        BottomNavigationBarItem(title: Text("List"), icon: Icon(Icons.list)),
+        BottomNavigationBarItem(label: Text("Home"), icon: Icon(Icons.home)),
+        BottomNavigationBarItem(label: Text("List"), icon: Icon(Icons.list)),
         BottomNavigationBarItem(
-            title: Text("Message"), icon: Icon(Icons.message)),
-        BottomNavigationBarItem(title: Text("add"), icon: Icon(Icons.add)),
-        BottomNavigationBarItem(title: Text("menu"), icon: Icon(Icons.menu)),
+            label: Text("Message"), icon: Icon(Icons.message)),
+        BottomNavigationBarItem(label: Text("add"), icon: Icon(Icons.add)),
+        BottomNavigationBarItem(label: Text("menu"), icon: Icon(Icons.menu)),
         BottomNavigationBarItem(
-            title: Text("other"), icon: Icon(Icons.devices_other)),
+            label: Text("other"), icon: Icon(Icons.devices_other)),
       ],
     );
   }

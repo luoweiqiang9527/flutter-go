@@ -6,7 +6,6 @@
 /// target: CupertinoButton 的示例
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 // Checkbox 默认按钮的实例
 // index 当前checkbox 的索引值
@@ -28,7 +27,7 @@ class _CupertinoButtonFullDefault extends State {
       },
       pressedOpacity: 0.5, // 按下后的按钮不透明度
       color: CupertinoColors.inactiveGray,
-      child: new Text('CupertinoButton'),
+      child: Text('CupertinoButton'),
     );
   }
 }

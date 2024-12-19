@@ -39,7 +39,7 @@ class _DemoState extends State<Demo> {
   void setButtonShapeType() {
     //String _buttonShapeType = (buttonShapeType == 'border') ? 'radius' : 'border';
     if (mounted) {
-      this.setState(() {
+      setState(() {
         //buttonShapeType = _buttonShapeType;
       });
     }
@@ -63,7 +63,7 @@ List allRawMaterialButtons(BuildContext context, _DemoState that) {
   return [
     _rawMaterialText0,
     _rawMaterialText1,
-    ButtonBar(
+    OverflowBar(
       alignment: MainAxisAlignment.spaceAround,
       mainAxisSize: MainAxisSize.max,
       children: <Widget>[

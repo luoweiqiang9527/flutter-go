@@ -2,19 +2,18 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import '../routers/application.dart';
-
+import '../components/widget_item_container.dart';
 /// import '../model/cat.dart';
 import '../model/widget.dart';
+import '../routers/application.dart';
 import '../widgets/index.dart';
-import '../components/widget_item_container.dart';
 
 class CategoryHome extends StatefulWidget {
   CategoryHome(this.token);
   final String token;
 
   @override
-  _CategoryHome createState() => new _CategoryHome();
+  _CategoryHome createState() => _CategoryHome();
 }
 
 class _CategoryHome extends State<CategoryHome> {
@@ -22,10 +21,10 @@ class _CategoryHome extends State<CategoryHome> {
   // 显示列表 cat or widget;
   List<CommonItem> items = [];
   List<Object> widgetPoints = [];
-  List<CommonItem> catHistory = new List();
+  List<CommonItem> catHistory = List();
 
   // 所有的可用demos;
-  List widgetDemosList = new WidgetDemoList().getDemos();
+  List widgetDemosList = WidgetDemoList().getDemos();
 
   @override
   void initState() {
@@ -37,7 +36,7 @@ class _CategoryHome extends State<CategoryHome> {
     print("targetGroup::: $targetGroup");
 
     catHistory.add(targetGroup);
-    this.setState(() {
+    setState(() {
       items = targetGroup.children;
     });
     searchCatOrWidget();
@@ -48,12 +47,12 @@ class _CategoryHome extends State<CategoryHome> {
     searchCatOrWidget();
   }
 
-  void searchCatOrWidget() async {
+  Future<void> searchCatOrWidget() async {
     /// CommonItem widgetTree = Application.widgetTree;
     // 假设进入这个界面的parent一定存在
     CommonItem targetGroup = catHistory.last;
 
-    this.setState(() {
+    setState(() {
       title = targetGroup.name;
     });
   }

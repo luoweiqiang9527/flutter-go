@@ -4,9 +4,9 @@
 /// @Last Modified time: 2019-01-07 15:42:54
 
 import 'package:flutter/material.dart';
+import 'package:flutter_go/components/widget_demo.dart';
 
 import './demo.dart';
-import 'package:flutter_go/components/widget_demo.dart';
 
 const String content0 = '''
 ### **简介**

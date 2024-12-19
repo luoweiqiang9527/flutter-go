@@ -8,9 +8,9 @@
 import "package:flutter/material.dart";
 
 import '../../../model/widget.dart';
+import 'AnimatedList/index.dart' as AnimatedList;
 import 'ListBody/index.dart' as ListBody;
 import 'ListView/index.dart' as ListView;
-import 'AnimatedList/index.dart' as AnimatedList;
 
 List<WidgetPoint> widgetPoints = [
   WidgetPoint(

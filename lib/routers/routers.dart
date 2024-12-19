@@ -19,7 +19,7 @@ class Routes {
   static String standardPage = '/standard-page/:id';
 
   static void configureRoutes(Router router) {
-    List widgetDemosList = new WidgetDemoList().getDemos();
+    List widgetDemosList = WidgetDemoList().getDemos();
 //    router.notFoundHandler = new Handler(
 //      handlerFunc: (BuildContext context, Map<String, List<String>> params) {
 //      }
@@ -35,8 +35,8 @@ class Routes {
     router.define(webViewPage, handler: webViewPageHand);
     router.define(issuesMessage, handler: issuesMessageHandler);
     router.define(standardPage, handler: standardPageHandler);
-    widgetDemosList.forEach((demo) {
-      Handler handler = new Handler(handlerFunc:
+    for (var demo in widgetDemosList) {
+      Handler handler = Handler(handlerFunc:
           (BuildContext context, Map<String, List<String>> params) {
         print('组件路由params=$params widgetsItem=${demo.routerName}');
         analytics
@@ -45,7 +45,7 @@ class Routes {
       });
       String path = demo.routerName;
       router.define('${path.toLowerCase()}', handler: handler);
-    });
+    }
 //    router.define(webViewPage,handler:webViewPageHand);
 //    standardPages.forEach((String id, String md) => {
 //

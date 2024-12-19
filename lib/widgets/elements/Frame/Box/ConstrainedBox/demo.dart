@@ -6,7 +6,6 @@
 /// Describle:ConstrainedBox描述
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class ConstrainedBoxCreate extends StatelessWidget {
   final double currWidth;

@@ -29,31 +29,31 @@ class _PulltorefreshState extends State<Pulltorefresh> {
   List<Widget> datas = ListData.getList();
   RefreshController _controller = RefreshController(initialRefresh: false);
 
-  void _onRefresh() async {
+  Future<void> _onRefresh() async {
     await Future.delayed(Duration(milliseconds: 1000));
     _controller.refreshCompleted();
   }
 
-  void _onLoading() async {
+  Future<void> _onLoading() async {
     await Future.delayed(Duration(milliseconds: 1500));
     ItemModel model = ItemModel(getRandomColor(), Icons.airplanemode_active,
         "军事新闻", "俄军大秀战略", "酝酿已久的俄罗斯“中部-2019”战略演习于16日正式启动", 5000);
 
-    this.datas.add(Item(getRandomColor(), model.icon, model.mainTitle,
+    datas.add(Item(getRandomColor(), model.icon, model.mainTitle,
         model.subTitle, model.des, model.readCount));
-    this.datas.add(Item(getRandomColor(), model.icon, model.mainTitle,
+    datas.add(Item(getRandomColor(), model.icon, model.mainTitle,
         model.subTitle, model.des, model.readCount));
-    this.datas.add(Item(getRandomColor(), model.icon, model.mainTitle,
+    datas.add(Item(getRandomColor(), model.icon, model.mainTitle,
         model.subTitle, model.des, model.readCount));
-    this.datas.add(Item(getRandomColor(), model.icon, model.mainTitle,
+    datas.add(Item(getRandomColor(), model.icon, model.mainTitle,
         model.subTitle, model.des, model.readCount));
-    this.datas.add(Item(getRandomColor(), model.icon, model.mainTitle,
+    datas.add(Item(getRandomColor(), model.icon, model.mainTitle,
         model.subTitle, model.des, model.readCount));
-    this.datas.add(Item(getRandomColor(), model.icon, model.mainTitle,
+    datas.add(Item(getRandomColor(), model.icon, model.mainTitle,
         model.subTitle, model.des, model.readCount));
-    this.datas.add(Item(getRandomColor(), model.icon, model.mainTitle,
+    datas.add(Item(getRandomColor(), model.icon, model.mainTitle,
         model.subTitle, model.des, model.readCount));
-    this.datas.add(Item(getRandomColor(), model.icon, model.mainTitle,
+    datas.add(Item(getRandomColor(), model.icon, model.mainTitle,
         model.subTitle, model.des, model.readCount));
     if (mounted) setState(() {});
     _controller.loadComplete();
@@ -62,7 +62,7 @@ class _PulltorefreshState extends State<Pulltorefresh> {
   @override
   Widget build(BuildContext context) {
     Widget _itemBuilder(BuildContext context, int position) {
-      return Card(child: this.datas[position]);
+      return Card(child: datas[position]);
     }
 
     return Scaffold(
@@ -81,7 +81,7 @@ class _PulltorefreshState extends State<Pulltorefresh> {
         onLoading: _onLoading,
         controller: _controller,
         child: ListView.builder(
-            itemBuilder: _itemBuilder, itemCount: this.datas.length),
+            itemBuilder: _itemBuilder, itemCount: datas.length),
       ),
     );
   }

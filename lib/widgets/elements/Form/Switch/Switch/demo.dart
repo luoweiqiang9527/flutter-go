@@ -16,10 +16,10 @@ class _Demo extends State<SwitchDemo> {
   @override
   Widget build(BuildContext context) {
     return Switch(
-      value: this.check,
+      value: check,
       onChanged: (bool val) {
-        this.setState(() {
-          this.check = !this.check;
+        setState(() {
+          check = !check;
         });
       },
     );
@@ -35,11 +35,11 @@ class _SwitchHighDemo extends State<SwitchHighDemo> {
   @override
   Widget build(BuildContext context) {
     return Switch.adaptive(
-      value: this.check,
+      value: check,
       activeColor: Colors.blue, // 激活时原点颜色
       onChanged: (bool val) {
-        this.setState(() {
-          this.check = !this.check;
+        setState(() {
+          check = !check;
         });
       },
     );
@@ -55,7 +55,7 @@ class _SwitchTypesDemo extends State<SwitchTypesDemo> {
   @override
   Widget build(BuildContext context) {
     return Switch(
-      value: this.check,
+      value: check,
       activeTrackColor: Colors.green,
       inactiveThumbColor: Colors.black,
       inactiveThumbImage: NetworkImage(
@@ -65,8 +65,8 @@ class _SwitchTypesDemo extends State<SwitchTypesDemo> {
       inactiveTrackColor: Colors.yellow,
       activeColor: Colors.blue, // 激活时原点颜色
       onChanged: (bool val) {
-        this.setState(() {
-          this.check = !this.check;
+        setState(() {
+          check = !check;
         });
       },
     );

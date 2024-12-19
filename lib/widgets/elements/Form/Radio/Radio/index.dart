@@ -36,7 +36,7 @@ class _DemoState extends State<Demo> {
     return WidgetDemo(
       contentList: [
         content1,
-        new RadioADemo(),
+        RadioADemo(),
       ],
       title: 'Radio',
       docUrl: 'https://docs.flutter.io/flutter/material/Radio-class.html',

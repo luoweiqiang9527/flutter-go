@@ -13,8 +13,7 @@ class FloatingActionButtonDefault extends StatelessWidget {
   final bool isDisabled;
 
   const FloatingActionButtonDefault([this.isDisabled = true])
-      : assert(isDisabled != null),
-        super();
+      : super();
 
   @override
   Widget build(BuildContext context) {

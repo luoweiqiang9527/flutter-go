@@ -1,11 +1,11 @@
-import '../../../../model/widget.dart';
 import "package:flutter/material.dart";
 
+import '../../../../model/widget.dart';
 import 'Icon/index.dart' as Icon;
-import 'ImageIcon/index.dart' as ImageIcon;
-import 'IconTheme/index.dart' as IconTheme;
 import 'IconData/index.dart' as IconData;
+import 'IconTheme/index.dart' as IconTheme;
 import 'IconThemeData/index.dart' as IconThemeData;
+import 'ImageIcon/index.dart' as ImageIcon;
 
 List<WidgetPoint> widgetPoints = [
   WidgetPoint(

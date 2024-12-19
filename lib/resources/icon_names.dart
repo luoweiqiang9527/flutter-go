@@ -5,8 +5,8 @@
 /// email: zhu.yan@alibaba-inc.com
 /// target: IconNames 的示例
 
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class IconNames {
   static List<IconData> names = [
@@ -682,7 +682,7 @@ class IconNames {
     Icons.picture_in_picture,
     Icons.picture_in_picture_alt,
     Icons.pie_chart,
-    Icons.pie_chart_outlined,
+    Icons.pie_chart_outline,
     Icons.pin_drop,
     Icons.place,
     Icons.play_arrow,

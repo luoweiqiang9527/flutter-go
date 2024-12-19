@@ -1,10 +1,10 @@
 import 'Button/index.dart' as Button;
-import 'Text/index.dart' as Text;
-import 'Input/index.dart' as Input;
 import 'CheckBox/index.dart' as CheckBox;
+import 'Input/index.dart' as Input;
 import 'Radio/index.dart' as Radio;
 import 'Slider/index.dart' as Slider;
 import 'Switch/index.dart' as Switch;
+import 'Text/index.dart' as Text;
 
 List getWidgets() {
   List result = [];

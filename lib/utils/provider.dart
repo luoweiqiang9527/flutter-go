@@ -2,9 +2,9 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:flutter/services.dart' show rootBundle;
 
 //const createSql = {
 //  'cat': """
@@ -29,15 +29,12 @@ class Provider {
 
   // 获取数据库中所有的表
   Future<List> getTables() async {
-    if (db == null) {
-      return Future.value([]);
-    }
     List tables = await db
         .rawQuery('SELECT name FROM sqlite_master WHERE type = "table"');
     List<String> targetList = [];
-    tables.forEach((item) {
+    for (var item in tables) {
       targetList.add(item['name']);
-    });
+    }
     return targetList;
   }
 
@@ -67,7 +64,7 @@ class Provider {
     } catch (e) {
       print("Error $e");
     }
-    bool tableIsRight = await this.checkTableIsRight();
+    bool tableIsRight = await checkTableIsRight();
 
     if (!tableIsRight) {
       // 关闭上面打开的db，否则无法执行open
@@ -77,7 +74,7 @@ class Provider {
       ByteData data = await rootBundle.load(join("assets", "app.db"));
       List<int> bytes =
           data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
-      await new File(path).writeAsBytes(bytes);
+      await File(path).writeAsBytes(bytes);
 
       db = await openDatabase(path, version: 1,
           onCreate: (Database db, int version) async {

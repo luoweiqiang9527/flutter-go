@@ -4,7 +4,6 @@
 /// @Last Modified time: 2018-12-17 13:43:01
 
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 class BoxScrollViewDemo extends StatelessWidget {
   @override
@@ -93,12 +92,10 @@ class ListViewDemo extends BoxScrollView {
 // 子类应重写此方法以构建布局模型。
   @override
   Widget buildChildLayout(BuildContext context) {
-    if (itemExtent != null) {
-      return SliverFixedExtentList(
-        delegate: childrenDelegate,
-        itemExtent: itemExtent,
-      );
-    }
-    return SliverList(delegate: childrenDelegate);
+    return SliverFixedExtentList(
+      delegate: childrenDelegate,
+      itemExtent: itemExtent,
+    );
+      return SliverList(delegate: childrenDelegate);
   }
 }

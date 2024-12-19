@@ -48,7 +48,7 @@ class _DemoState extends State<Demo> {
     String _buttonShapeType =
         (buttonShapeType == 'border') ? 'radius' : 'border';
     if (mounted) {
-      this.setState(() {
+      setState(() {
         buttonShapeType = _buttonShapeType;
       });
     }
@@ -72,7 +72,7 @@ List allRaisedButtons(BuildContext context, _DemoState that) {
   return [
     _raisedText0,
     _raisedText1,
-    ButtonBar(
+    OverflowBar(
       alignment: MainAxisAlignment.spaceAround,
       mainAxisSize: MainAxisSize.max,
       children: <Widget>[
@@ -82,7 +82,7 @@ List allRaisedButtons(BuildContext context, _DemoState that) {
       ],
     ),
     _raisedText2,
-    ButtonBar(
+    OverflowBar(
       alignment: MainAxisAlignment.spaceAround,
       //mainAxisSize: MainAxisSize.min,
       children: <Widget>[
@@ -90,7 +90,7 @@ List allRaisedButtons(BuildContext context, _DemoState that) {
         raisedButton.RaisedButtonIconDefault(false),
       ],
     ),
-    ButtonBar(
+    OverflowBar(
       alignment: MainAxisAlignment.spaceAround,
       //mainAxisSize: MainAxisSize.min,
       children: <Widget>[

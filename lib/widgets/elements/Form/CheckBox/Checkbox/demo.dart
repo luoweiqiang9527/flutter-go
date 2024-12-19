@@ -53,11 +53,11 @@ class CheckboxSelect extends StatelessWidget {
     return Checkbox(
         activeColor: color,
         tristate: false,
-        value: parent.selectValue == this.index,
+        value: parent.selectValue == index,
         onChanged: (bool bol) {
           if (parent.mounted) {
             parent.setState(() {
-              parent.selectValue = bol ? this.index : -1;
+              parent.selectValue = bol ? index : -1;
             });
           }
         });

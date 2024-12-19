@@ -6,7 +6,6 @@
 /// Describle:FittedBox
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class FittedBoxDefault extends StatelessWidget {
   final BoxFit curfit;

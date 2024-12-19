@@ -1,11 +1,12 @@
 import 'dart:io';
-import 'package:args/args.dart'; // 使用其中两个类ArgParser和ArgResults
-import 'package:dart_inquirer/dart_inquirer.dart';
-import 'package:args/command_runner.dart';
 
+import 'package:args/args.dart'; // 使用其中两个类ArgParser和ArgResults
+import 'package:args/command_runner.dart';
+import 'package:dart_inquirer/dart_inquirer.dart';
+
+import '../../utils/util.dart';
 import '../build/build_page_list.dart';
 import '../config.dart';
-import '../../utils/util.dart';
 
 var pageMarkdown  = """
 # page
@@ -40,7 +41,7 @@ class PageDetail {
   }
 }
 // 同时，argResults也是ArgResults的实例
-void createPage() async {
+Future<void> createPage() async {
   Map environmentVars = Platform.environment;
   List<Question> questions = [
     InputQuestion('name', '请输入文件名称?'),
@@ -79,7 +80,7 @@ void createPage() async {
   writeContent2Path('$demoPath/', 'index.dart', """
 String getMd() {
   return \"\"\"
-  ${pageMarkdown}\"\"\";
+  $pageMarkdown\"\"\";
 
 }
 """);

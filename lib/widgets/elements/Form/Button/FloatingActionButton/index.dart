@@ -46,7 +46,7 @@ class _DemoState extends State<Demo> {
     String _buttonShapeType =
         (buttonShapeType == 'border') ? 'radius' : 'border';
     if (mounted) {
-      this.setState(() {
+      setState(() {
         buttonShapeType = _buttonShapeType;
       });
     }
@@ -71,7 +71,7 @@ List allFloatingActionButtons(BuildContext context, _DemoState that) {
   return [
     _floatingActionText0,
     _floatingActionText1,
-    ButtonBar(
+    OverflowBar(
       alignment: MainAxisAlignment.spaceAround,
       mainAxisSize: MainAxisSize.max,
       children: <Widget>[

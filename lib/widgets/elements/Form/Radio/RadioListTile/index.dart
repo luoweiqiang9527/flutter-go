@@ -31,7 +31,7 @@ class _DemoState extends State<Demo> {
   @override
   Widget build(BuildContext context) {
     return WidgetDemo(
-      contentList: [content1, new DemoA()],
+      contentList: [content1, DemoA()],
       title: 'RadioListTile',
       docUrl:
           'https://docs.flutter.io/flutter/material/RadioListTile-class.html',

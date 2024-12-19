@@ -6,7 +6,6 @@
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 
 const double _kScrollbarThickness = 16.0;
@@ -83,7 +82,7 @@ class _ScrollbarPainterDemoState extends State<ScrollbarPainterDemo>
       case TargetPlatform.iOS:
         // On iOS, stop all local animations. CupertinoScrollbar has its own
         // animations.
-        _fadeoutTimer?.cancel();
+        _fadeoutTimer.cancel();
         _fadeoutTimer = null;
         _fadeoutAnimationController.reset();
         break;
@@ -117,7 +116,7 @@ class _ScrollbarPainterDemoState extends State<ScrollbarPainterDemo>
 
       _materialPainter.update(
           notification.metrics, notification.metrics.axisDirection);
-      _fadeoutTimer?.cancel();
+      _fadeoutTimer.cancel();
       _fadeoutTimer = Timer(_kScrollbarTimeToFade, () {
         _fadeoutAnimationController.reverse();
         _fadeoutTimer = null;
@@ -129,8 +128,8 @@ class _ScrollbarPainterDemoState extends State<ScrollbarPainterDemo>
   @override
   void dispose() {
     _fadeoutAnimationController.dispose();
-    _fadeoutTimer?.cancel();
-    _materialPainter?.dispose();
+    _fadeoutTimer.cancel();
+    _materialPainter.dispose();
     super.dispose();
   }
 

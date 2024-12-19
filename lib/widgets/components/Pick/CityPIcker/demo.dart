@@ -5,8 +5,8 @@
 /// email: sanfan.hx@alibaba-inc.com
 /// target:  xxx
 
-import 'package:flutter/material.dart';
 import 'package:city_pickers/city_pickers.dart';
+import 'package:flutter/material.dart';
 
 class CityPickerDemo extends StatefulWidget {
   _Demo createState() => _Demo();
@@ -32,7 +32,7 @@ class _Demo extends State<CityPickerDemo> {
         Text("result: ${_result.toString()}"),
         RaisedButton(
           onPressed: () {
-            this.show(context);
+            show(context);
           },
           child: Text("select"),
         ),

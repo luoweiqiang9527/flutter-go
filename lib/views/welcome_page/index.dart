@@ -6,7 +6,6 @@
 /// target:  xxx
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import 'package:flutter_go/views/welcome_page/fourth_page.dart';
 
@@ -15,13 +14,13 @@ class WelcomePage extends StatefulWidget {
 
   @override
   _WelcomePageState createState() {
-    return new _WelcomePageState();
+    return _WelcomePageState();
   }
 }
 
 class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
-    return new Container(color: Colors.white, child: FourthPage());
+    return Container(color: Colors.white, child: FourthPage());
   }
 }

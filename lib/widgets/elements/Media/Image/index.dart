@@ -12,12 +12,12 @@ import './DecorationImagePainter/index.dart' as DecorationImagePainter;
 import './ExactAssetImage/index.dart' as ExactAssetImage;
 import './FadeInImage/index.dart' as FadeInImage;
 import './FileImage/index.dart' as FileImage;
+import './Image/index.dart' as Image;
 import './MemoryImage/index.dart' as MemoryImage;
 import './NetworkImage/index.dart' as NetworkImage;
+import './RawImage/index.dart' as RawImage;
 import './paintImage/index.dart' as paintImage;
 import './precacheImage/index.dart' as precacheImage;
-import './RawImage/index.dart' as RawImage;
-import './Image/index.dart' as Image;
 
 List<WidgetPoint> widgetPoints = [
   WidgetPoint(

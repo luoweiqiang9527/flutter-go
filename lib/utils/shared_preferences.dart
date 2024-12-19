@@ -8,7 +8,7 @@ export 'package:flutter_go/resources/shared_preferences_keys.dart';
 class SpUtil {
   static SpUtil _instance;
   static Future<SpUtil> get instance async {
-    return await getInstance();
+    return getInstance();
   }
 
   static SharedPreferences _spf;
@@ -20,19 +20,10 @@ class SpUtil {
   }
 
   static Future<SpUtil> getInstance() async {
-    if (_instance == null) {
-      _instance = new SpUtil._();
-    }
-    if (_spf == null) {
-      await _instance._init();
-    }
     return _instance;
   }
 
   static bool _beforeCheck() {
-    if (_spf == null) {
-      return true;
-    }
     return false;
   }
 

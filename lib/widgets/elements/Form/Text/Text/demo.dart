@@ -5,8 +5,8 @@
 /// email: sanfan.hx@alibaba-inc.com
 /// target:  CupertinoTabBar
 
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class TextDemo extends StatefulWidget {
   _Demo createState() => _Demo();
@@ -14,7 +14,7 @@ class TextDemo extends StatefulWidget {
 
 class _Demo extends State<TextDemo> {
   int index = 0;
-  Duration timer = new Duration(minutes: 50);
+  Duration timer = Duration(minutes: 50);
   @override
   Widget build(BuildContext context) {
     return Text("i'm a text");

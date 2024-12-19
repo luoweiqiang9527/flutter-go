@@ -1,9 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:fluro/fluro.dart';
-import './widget_item.dart';
+import 'package:flutter/material.dart';
+
+import '../model/widget.dart';
 import '../routers/application.dart';
 import '../widgets/index.dart';
-import '../model/widget.dart';
+import './widget_item.dart';
 
 class WidgetItemContainer extends StatelessWidget {
   final int columnCount; //一行几个
@@ -11,7 +12,7 @@ class WidgetItemContainer extends StatelessWidget {
 //  final bool isWidgetPoint;
 
   // 所有的可用demos;
-  final List widgetDemosList = new WidgetDemoList().getDemos();
+  final List widgetDemosList = WidgetDemoList().getDemos();
 
   WidgetItemContainer({
     Key key,
@@ -30,12 +31,12 @@ class WidgetItemContainer extends StatelessWidget {
   void tapToOldWidget(WidgetLeaf leaf, BuildContext context) {
     String targetName = leaf.name;
     String targetRouter = '/category/error/404';
-    widgetDemosList.forEach((item) {
+    for (var item in widgetDemosList) {
       if (item.name == targetName) {
         targetRouter = item.routerName;
         targetRouter = targetRouter.toLowerCase();
       }
-    });
+    }
     Application.router.navigateTo(
       context,
       targetRouter,

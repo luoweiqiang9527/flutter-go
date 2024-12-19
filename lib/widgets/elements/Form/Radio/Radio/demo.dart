@@ -14,7 +14,7 @@ class RadioADemo extends StatefulWidget {
 class _Demo extends State<RadioADemo> {
   int groupValue = 1;
   onChange(val) {
-    this.setState(() {
+    setState(() {
       groupValue = val;
     });
   }

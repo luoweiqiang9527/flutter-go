@@ -124,7 +124,7 @@ class AlertDialogDemo extends StatelessWidget {
             color: Colors.white, // textcolor
           ),
         ),
-        color: Theme.of(context).accentColor,
+        color: Theme.of(context).colorScheme.secondary,
         elevation: 4.0,
         //shadow
         splashColor: Colors.blueGrey,

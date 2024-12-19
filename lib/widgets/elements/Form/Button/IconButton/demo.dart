@@ -18,8 +18,7 @@ class IconButtonDefault extends StatelessWidget {
   final bool isDisabled;
 
   const IconButtonDefault([this.isDisabled = true])
-      : assert(isDisabled != null),
-        super();
+      : super();
 
   @override
   Widget build(BuildContext context) {
@@ -76,10 +75,8 @@ class IconButtonCustom extends StatelessWidget {
         // IconButton 的点击事件
         onPressed: () {
           // Perform some action
-          if (_onPressed is VoidCallback) {
-            _onPressed();
-          }
-        });
+          _onPressed();
+                });
   }
 }
 

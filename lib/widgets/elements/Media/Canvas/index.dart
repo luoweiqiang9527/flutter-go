@@ -1,10 +1,10 @@
-import 'package:flutter_go/model/widget.dart';
 import "package:flutter/material.dart";
+import 'package:flutter_go/model/widget.dart';
 
-import 'PainterSketch/index.dart' as PainterSketch;
 import 'Canvas/index.dart' as Canvas;
-import 'PainterPath/index.dart' as PainterPath;
 import 'CircleProgressBarPainter/index.dart' as CircleProgressBarPainter;
+import 'PainterPath/index.dart' as PainterPath;
+import 'PainterSketch/index.dart' as PainterSketch;
 
 List<WidgetPoint> widgetPoints = [
   WidgetPoint(

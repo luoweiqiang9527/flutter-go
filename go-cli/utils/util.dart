@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'dart:math';
 Future<bool> createFile(String path) async {
-  final tempDic = new Directory(path);
+  final tempDic = Directory(path);
   var exits = await tempDic.exists();
 
   if (exits) {
@@ -13,7 +13,7 @@ Future<bool> createFile(String path) async {
   return Future(() => true);
 }
 Future<String> readeFile(String path) async {
-  String content = await new File(path).readAsString();
+  String content = await File(path).readAsString();
   return Future(() => content);
 }
 
@@ -28,9 +28,9 @@ Future<void> writeContent2Path(String path,String fileName, String content) asyn
 }
 String generateId() {
   int d = DateTime.now().millisecondsSinceEpoch;
-  var random = new Random(1);
+  var random = Random(1);
   var template = 'xxxxxxxx_xxxx_4xxx_yxxx_xxxxxxxxxxxx';
-  var id = template.replaceAllMapped(new RegExp(r"[x|y]"), (c) {
+  var id = template.replaceAllMapped(RegExp(r"[x|y]"), (c) {
     var r = ((d + random.nextDouble() * 16) % 16).toInt();
     d = d ~/ 16;
     var t = c.group(0) == 'x' ? r : (1 & 0x3 | 0x8);

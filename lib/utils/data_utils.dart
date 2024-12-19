@@ -1,18 +1,18 @@
 import 'dart:async' show Future;
 
 import 'package:fluro/fluro.dart';
+import 'package:flutter_go/api/api.dart';
 import 'package:flutter_go/model/collection.dart';
 import 'package:flutter_go/model/version.dart';
 import 'package:flutter_go/model/widget.dart';
+import 'package:flutter_go/routers/application.dart';
+import 'package:flutter_go/routers/routers.dart';
 import 'package:package_info/package_info.dart';
 
+import '../model/user_info.dart';
 /// import 'package:flutter_go/model/responseData.dart';
 
 import './net_utils.dart';
-import '../model/user_info.dart';
-import 'package:flutter_go/api/api.dart';
-import 'package:flutter_go/routers/application.dart';
-import 'package:flutter_go/routers/routers.dart';
 
 class DataUtils {
   // 登陆获取用户信息

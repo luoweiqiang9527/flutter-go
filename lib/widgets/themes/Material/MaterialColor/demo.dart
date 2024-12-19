@@ -20,7 +20,7 @@ class Palette {
   final int
       threshold; // titles for indices > threshold are white, otherwise black
 
-  bool get isValid => name != null && primary != null && threshold != null;
+  bool get isValid => primary != null;
 }
 
 final List<Palette> allPalettes = <Palette>[
@@ -107,10 +107,7 @@ class ColorItem extends StatelessWidget {
     @required this.index,
     @required this.color,
     this.prefix = '',
-  })  : assert(index != null),
-        assert(color != null),
-        assert(prefix != null),
-        super(key: key);
+  })  : super(key: key);
 
   final int index;
   final Color color;
@@ -148,7 +145,7 @@ class PaletteTabView extends StatelessWidget {
   PaletteTabView({
     Key key,
     @required this.colors,
-  })  : assert(colors != null && colors.isValid),
+  })  : assert(colors.isValid),
         super(key: key);
 
   final Palette colors;
@@ -171,9 +168,9 @@ class PaletteTabView extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
     final TextStyle whiteTextStyle =
-        textTheme.body1.copyWith(color: Colors.white);
+        textTheme.bodyMedium.copyWith(color: Colors.white);
     final TextStyle blackTextStyle =
-        textTheme.body1.copyWith(color: Colors.black);
+        textTheme.bodyMedium.copyWith(color: Colors.black);
     final List<Widget> colorItems = primaryKeys.map<Widget>((int index) {
       return DefaultTextStyle(
         style: index > colors.threshold ? whiteTextStyle : blackTextStyle,
@@ -181,16 +178,14 @@ class PaletteTabView extends StatelessWidget {
       );
     }).toList();
 
-    if (colors.accent != null) {
-      colorItems.addAll(accentKeys.map<Widget>((int index) {
-        return DefaultTextStyle(
-          style: index > colors.threshold ? whiteTextStyle : blackTextStyle,
-          child:
-              ColorItem(index: index, color: colors.accent[index], prefix: 'A'),
-        );
-      }).toList());
-    }
-
+    colorItems.addAll(accentKeys.map<Widget>((int index) {
+      return DefaultTextStyle(
+        style: index > colors.threshold ? whiteTextStyle : blackTextStyle,
+        child:
+            ColorItem(index: index, color: colors.accent[index], prefix: 'A'),
+      );
+    }).toList());
+  
     return ListView(
       itemExtent: kColorItemHeight,
       children: colorItems,

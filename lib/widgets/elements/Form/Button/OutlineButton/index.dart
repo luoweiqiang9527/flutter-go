@@ -49,7 +49,7 @@ class _DemoState extends State<Demo> {
     String _buttonShapeType =
         (buttonShapeType == 'border') ? 'radius' : 'border';
     if (mounted) {
-      this.setState(() {
+      setState(() {
         buttonShapeType = _buttonShapeType;
       });
     }
@@ -73,7 +73,7 @@ List allOutlineButtons(BuildContext context, _DemoState that) {
   return [
     _outlineText0,
     _outlineText1,
-    ButtonBar(
+    OverflowBar(
       alignment: MainAxisAlignment.spaceAround,
       mainAxisSize: MainAxisSize.max,
       children: <Widget>[
@@ -83,7 +83,7 @@ List allOutlineButtons(BuildContext context, _DemoState that) {
       ],
     ),
     _outlineText2,
-    ButtonBar(
+    OverflowBar(
       alignment: MainAxisAlignment.spaceAround,
       //mainAxisSize: MainAxisSize.min,
       children: <Widget>[
@@ -91,7 +91,7 @@ List allOutlineButtons(BuildContext context, _DemoState that) {
         outlineButton.OutlineButtonIconDefault(false),
       ],
     ),
-    ButtonBar(
+    OverflowBar(
       alignment: MainAxisAlignment.spaceAround,
       //mainAxisSize: MainAxisSize.min,
       children: <Widget>[

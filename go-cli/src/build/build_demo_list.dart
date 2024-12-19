@@ -1,5 +1,6 @@
-import 'dart:io';
 import 'dart:convert';
+import 'dart:io';
+
 import '../../utils/util.dart';
 import '../config.dart';
 import '../exception/demo.dart';
@@ -33,7 +34,7 @@ Future<List> buildDemoListJson() async {
       detailList.add(item);
     } catch (err) {
       print("err $err");
-      throw new Exception('$dicPath');
+      throw Exception('$dicPath');
     }
   }
   print("本次编译: 获取${detailList.length}条demo数据");
@@ -41,7 +42,7 @@ Future<List> buildDemoListJson() async {
   String demoTplString = renderDemosDart(detailList);
 
   // 生成 page_demo_package/index.dart
-  writeContent2Path(TARGET_DEMO_DIC, 'index.dart', demoTplString.replaceAll(new RegExp('-'), '_'));
+  writeContent2Path(TARGET_DEMO_DIC, 'index.dart', demoTplString.replaceAll(RegExp('-'), '_'));
   // 生成 page_demo_package/.demo.dart
   writeContent2Path(TARGET_DEMO_DIC, '.demo.json', json.encode(detailList));
   return Future(() => childList);
@@ -59,7 +60,7 @@ String renderDemosDart(List<Map<String, dynamic>> data) {
     String demoImportName = '${item['name']}_${item['id']}';
     head += "import '${item['name']}_${item['author']}_${item['id']}/index.dart' as StandardDemo_$demoImportName;\r\n";
 
-    foot += "  '${item['id']}': ${pre}_${demoImportName}.demoWidgets";
+    foot += "  '${item['id']}': ${pre}_$demoImportName.demoWidgets";
 
     if (i != data.length - 1) {
       foot += ',\r\n';
@@ -87,7 +88,7 @@ Future<bool> checkDemo(String path) async {
       isExist = await File(detailPath).exists();
     }
     if (!isExist) {
-     throw new InvalidDemo('$path$name not exit');
+     throw InvalidDemo('$path$name not exit');
     }
   }
   return Future(() => true);

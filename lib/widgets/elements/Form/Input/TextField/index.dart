@@ -45,7 +45,7 @@ class _DemoState extends State<Demo> {
   void setButtonShapeType() {
     String _buttonShapeType =
         (buttonShapeType == 'border') ? 'radius' : 'border';
-    this.setState(() {
+    setState(() {
       buttonShapeType = _buttonShapeType;
     });
   }

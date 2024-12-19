@@ -5,8 +5,8 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import './home_banner.dart';
 import '../model/story.dart';
+import './home_banner.dart';
 
 class Pagination extends StatelessWidget {
   static final String routeName = '/material/page-selector';
@@ -55,7 +55,7 @@ class Pagination extends StatelessWidget {
     }
   ];
 
-  void _launchURL(String url) async {
+  Future<void> _launchURL(String url) async {
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -68,11 +68,11 @@ class Pagination extends StatelessWidget {
     List<StoryModel> bannerStories = [];
 
     /// super.initState();
-    arr.forEach((item) {
+    for (var item in arr) {
       bannerStories.add(StoryModel.fromJson(item));
-    });
+    }
 
-    if (arr.length > 0) {
+    if (arr.isNotEmpty) {
       list.add(HomeBanner(bannerStories, (story) {
         _launchURL('${story.url}');
       }));

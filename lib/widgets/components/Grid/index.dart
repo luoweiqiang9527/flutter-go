@@ -8,10 +8,10 @@
 import "package:flutter/material.dart";
 
 import '../../../model/widget.dart';
-import 'GridTile/index.dart' as GridTile;
-import 'GridView/index.dart' as GridView;
-import 'GridTileBar/index.dart' as GridTileBar;
 import 'GridPaper/index.dart' as GridPaper;
+import 'GridTile/index.dart' as GridTile;
+import 'GridTileBar/index.dart' as GridTileBar;
+import 'GridView/index.dart' as GridView;
 import 'SliverGrid/index.dart' as SliverGrid;
 
 List<WidgetPoint> widgetPoints = [

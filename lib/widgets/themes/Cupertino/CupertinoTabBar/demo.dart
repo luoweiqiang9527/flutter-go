@@ -16,7 +16,7 @@ class _Demo extends State<CupertinoTabBarDemo> {
   int index = 0;
 
   changeIndex(int _index) {
-    this.setState(() {
+    setState(() {
       index = _index;
     });
   }
@@ -36,15 +36,15 @@ class _Demo extends State<CupertinoTabBarDemo> {
             backgroundColor: Color.fromRGBO(244, 244, 244, 0.5),
             currentIndex: index,
             onTap: (i) {
-              this.changeIndex(i);
+              changeIndex(i);
             },
             items: [
               BottomNavigationBarItem(
-                title: Text("1"),
+                label: Text("1"),
                 icon: Icon(Icons.add),
               ),
               BottomNavigationBarItem(
-                  title: Text("2"), icon: Icon(Icons.delete))
+                  label: Text("2"), icon: Icon(Icons.delete))
             ],
           )),
     );

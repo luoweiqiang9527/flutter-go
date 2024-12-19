@@ -15,8 +15,7 @@ class OutlineButtonDefault extends StatelessWidget {
   final bool isDisabled;
 
   const OutlineButtonDefault([this.isDisabled = true])
-      : assert(isDisabled != null),
-        super();
+      : super();
 
   @override
   Widget build(BuildContext context) {
@@ -104,10 +103,8 @@ class OutlineButtonCustom extends StatelessWidget {
         // OutlineButton 的点击事件
         onPressed: () {
           // Perform some action
-          if (_onPressed is VoidCallback) {
-            _onPressed();
-          }
-        });
+          _onPressed();
+                });
   }
 }
 

@@ -53,7 +53,7 @@ List allDemoBoxs(BuildContext context, _DemoState that) {
     SizedBox(height: 20.0),
     // 间距
     _Text1,
-    ButtonBar(
+    OverflowBar(
       alignment: MainAxisAlignment.spaceAround,
       mainAxisSize: MainAxisSize.max,
       children: <Widget>[

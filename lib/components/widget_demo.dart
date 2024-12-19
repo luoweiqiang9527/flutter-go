@@ -7,14 +7,13 @@ import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_go/utils/data_utils.dart';
 
-import '../routers/application.dart';
-import '../routers/routers.dart';
 import '../components/markdown.dart';
-
-/// import '../model/collection.dart';
-import '../widgets/index.dart';
 import '../event/event_bus.dart';
 import '../event/event_model.dart';
+import '../routers/application.dart';
+import '../routers/routers.dart';
+/// import '../model/collection.dart';
+import '../widgets/index.dart';
 
 class WidgetDemo extends StatefulWidget {
   final List<dynamic> contentList;
@@ -40,7 +39,7 @@ class _WidgetDemoState extends State<WidgetDemo> {
 
   /// CollectionControlModel _collectionControl = new CollectionControlModel();
   var _collectionIcons;
-  List widgetDemosList = new WidgetDemoList().getDemos();
+  List widgetDemosList = WidgetDemoList().getDemos();
   String widgetType = 'old';
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -50,7 +49,7 @@ class _WidgetDemoState extends State<WidgetDemo> {
         height: 10.0,
       ),
     ];
-    widget.contentList.forEach((item) {
+    for (var item in widget.contentList) {
       if (item.runtimeType == String) {
         _list.add(MarkdownBody(item));
         _list.add(
@@ -61,7 +60,7 @@ class _WidgetDemoState extends State<WidgetDemo> {
       } else {
         _list.add(item);
       }
-    });
+    }
     return _list;
   }
 
@@ -80,7 +79,7 @@ class _WidgetDemoState extends State<WidgetDemo> {
         "name": widget.title
       };
       DataUtils.checkCollected(params).then((result) {
-        if (this.mounted) {
+        if (mounted) {
           setState(() {
             _hasCollected = result ?? null;
           });
@@ -103,11 +102,9 @@ class _WidgetDemoState extends State<WidgetDemo> {
         if (result) {
           _scaffoldKey.currentState
               .showSnackBar(SnackBar(content: Text('已取消收藏')));
-          if (ApplicationEvent.event != null) {
-            ApplicationEvent.event
-                .fire(CollectionEvent(widget.title, currentRouterPath, true));
-          }
-          if (this.mounted) {
+          ApplicationEvent.event
+              .fire(CollectionEvent(widget.title, currentRouterPath, true));
+                  if (mounted) {
             setState(() {
               _hasCollected = false;
             });
@@ -118,18 +115,16 @@ class _WidgetDemoState extends State<WidgetDemo> {
       // 插入操作
       DataUtils.addCollected(params, context).then((result) {
         if (result) {
-          if (this.mounted) {
+          if (mounted) {
             setState(() {
               _hasCollected = true;
             });
           }
           _scaffoldKey.currentState
               .showSnackBar(SnackBar(content: Text('收藏成功')));
-          if (ApplicationEvent.event != null) {
-            ApplicationEvent.event
-                .fire(CollectionEvent(widget.title, currentRouterPath, false));
-          }
-        }
+          ApplicationEvent.event
+              .fire(CollectionEvent(widget.title, currentRouterPath, false));
+                }
       });
     }
   }
@@ -153,31 +148,27 @@ class _WidgetDemoState extends State<WidgetDemo> {
 
   List<PopupMenuEntry<String>> buildPopupMenu() {
     List<PopupMenuEntry<String>> comps = [];
-    if (widget.docUrl != null) {
-      comps.add(PopupMenuItem<String>(
-        value: 'doc',
-        child: ListTile(
-          leading: Icon(
-            Icons.library_books,
-            size: 22.0,
-          ),
-          title: Text('查看文档'),
+    comps.add(PopupMenuItem<String>(
+      value: 'doc',
+      child: ListTile(
+        leading: Icon(
+          Icons.library_books,
+          size: 22.0,
         ),
-      ));
-    }
-    if (widget.codeUrl != null) {
+        title: Text('查看文档'),
+      ),
+    ));
       comps.add(PopupMenuItem<String>(
-        value: 'code',
-        child: ListTile(
-          leading: Icon(
-            Icons.code,
-            size: 22.0,
-          ),
-          title: Text('查看Demo'),
+      value: 'code',
+      child: ListTile(
+        leading: Icon(
+          Icons.code,
+          size: 22.0,
         ),
-      ));
-    }
-    return comps;
+        title: Text('查看Demo'),
+      ),
+    ));
+      return comps;
   }
 
   @override
@@ -189,20 +180,20 @@ class _WidgetDemoState extends State<WidgetDemo> {
     }
     List<PopupMenuEntry<String>> menus = buildPopupMenu();
     List<Widget> actions = [
-      new IconButton(
+      IconButton(
         tooltip: 'goBack home',
         onPressed: () {
           Navigator.popUntil(context, ModalRoute.withName(Routes.root));
         },
         icon: Icon(Icons.home),
       ),
-      new IconButton(
+      IconButton(
         tooltip: 'collection',
         onPressed: _getCollection,
         icon: Icon(_collectionIcons),
       ),
     ];
-    if (menus.length > 0) {
+    if (menus.isNotEmpty) {
       actions.add(PopupMenuButton<String>(
         onSelected: _selectValue,
         itemBuilder: (BuildContext context) => menus,

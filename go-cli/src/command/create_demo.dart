@@ -1,11 +1,11 @@
 import 'package:args/args.dart'; // 使用其中两个类ArgParser和ArgResults
+import 'package:args/command_runner.dart';
 import 'package:dart_inquirer/dart_inquirer.dart';
 import 'package:path/path.dart' as p;
-import 'package:args/command_runner.dart';
-import '../build/build_demo_list.dart';
 
-import '../config.dart';
 import '../../utils/util.dart';
+import '../build/build_demo_list.dart';
+import '../config.dart';
 
 
 
@@ -28,7 +28,7 @@ class DemoDetail {
   }
 }
 // 同时，argResults也是ArgResults的实例
-void createDemo() async {
+Future<void> createDemo() async {
 
   List<Question> questions = [
     InputQuestion('name', '请输入新增加的demo名称?'),
@@ -96,7 +96,7 @@ class _State extends State<Demo> {
 //
 // Created with flutter go cli
 // User: ${demoDetail.author}
-// Time: ${new DateTime.now()}
+// Time: ${DateTime.now()}
 // email: ${demoDetail.email}
 // desc:  ${demoDetail.desc}
 //

@@ -35,7 +35,7 @@ class _DemoState extends State<Demo> {
   String buttonShapeType = 'border'; // 边框类型
   void setButtonShapeType() {
     //String _buttonShapeType = (buttonShapeType == 'border') ? 'radius' : 'border';
-    this.setState(() {
+    setState(() {
       //buttonShapeType = _buttonShapeType;
     });
   }
@@ -57,7 +57,7 @@ List allDropdownButtons(BuildContext context, _DemoState that) {
   return [
     _dropdownText0,
     _dropdownText1,
-    ButtonBar(
+    OverflowBar(
       alignment: MainAxisAlignment.spaceAround,
       mainAxisSize: MainAxisSize.max,
       children: <Widget>[

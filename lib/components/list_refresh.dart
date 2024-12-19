@@ -26,8 +26,8 @@ class _ListRefreshState extends State<ListRefresh> {
   bool _hasMore = true; // 是否还有更多数据可加载
   int _pageIndex = 0; // 页面的索引
   int _pageTotal = 0; // 页面的索引
-  List items = new List();
-  ScrollController _scrollController = new ScrollController();
+  List items = List();
+  ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
@@ -65,7 +65,7 @@ class _ListRefreshState extends State<ListRefresh> {
       List newEntries = await mokeHttpRequest();
       //if (newEntries.isEmpty) {
       _hasMore = (_pageIndex <= _pageTotal);
-      if (this.mounted) {
+      if (mounted) {
         setState(() {
           items.addAll(newEntries);
           isLoading = false;
@@ -97,7 +97,7 @@ class _ListRefreshState extends State<ListRefresh> {
 // 其实就是列表重置
   Future<Null> _handleRefresh() async {
     List newEntries = await mokeHttpRequest();
-    if (this.mounted) {
+    if (mounted) {
       setState(() {
         items.clear();
         items.addAll(newEntries);
@@ -122,14 +122,14 @@ class _ListRefreshState extends State<ListRefresh> {
 // 上提加载loading的widget,如果数据到达极限，显示没有更多
   Widget _buildProgressIndicator() {
     if (_hasMore) {
-      return new Padding(
+      return Padding(
         padding: const EdgeInsets.all(8.0),
-        child: new Center(
+        child: Center(
             child: Column(
           children: <Widget>[
-            new Opacity(
+            Opacity(
               opacity: isLoading ? 1.0 : 0.0,
-              child: new CircularProgressIndicator(
+              child: CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation(Colors.blue)),
             ),
             SizedBox(height: 20.0),
@@ -155,7 +155,7 @@ class _ListRefreshState extends State<ListRefresh> {
 
   @override
   Widget build(BuildContext context) {
-    return new RefreshIndicator(
+    return RefreshIndicator(
       child: ListView.builder(
         itemCount: items.length + 1,
         itemBuilder: (context, index) {

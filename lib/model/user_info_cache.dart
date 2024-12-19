@@ -48,15 +48,15 @@ class UserInfoControlModel {
   Future<List<UserInfo>> getAllInfo() async {
     List list = await sql.getByCondition();
     List<UserInfo> resultList = [];
-    list.forEach((item) {
+    for (var item in list) {
       print(item);
       resultList.add(UserInfo.fromJSON(item));
-    });
+    }
     return resultList;
   }
 
   // 清空表中数据
   Future deleteAll() async {
-    return await sql.deleteAll();
+    return sql.deleteAll();
   }
 }

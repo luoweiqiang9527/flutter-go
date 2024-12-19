@@ -2,14 +2,13 @@
 /// @Date: 2019-06-05 14:01:03
 /// @Last Modified by:   一凨
 /// @Last Modified time: 2019-06-05 14:01:03
-import 'package:flutter/material.dart';
 import 'package:event_bus/event_bus.dart';
 import 'package:fluro/fluro.dart';
-
-import 'package:flutter_go/model/collection.dart';
-import 'package:flutter_go/routers/application.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_go/event/event_bus.dart';
 import 'package:flutter_go/event/event_model.dart';
+import 'package:flutter_go/model/collection.dart';
+import 'package:flutter_go/routers/application.dart';
 import 'package:flutter_go/utils/data_utils.dart';
 
 class CollectionFullPage extends StatefulWidget {
@@ -22,13 +21,13 @@ class CollectionFullPage extends StatefulWidget {
 
 class _CollectionFullPageState extends State<CollectionFullPage> {
   _CollectionFullPageState() {
-    final eventBus = new EventBus();
+    final eventBus = EventBus();
     ApplicationEvent.event = eventBus;
   }
 
   /// CollectionControlModel _collectionControl = new CollectionControlModel();
   List<Collection> _collectionList = [];
-  ScrollController _scrollController = new ScrollController();
+  ScrollController _scrollController = ScrollController();
   var _icons;
 
   @override
@@ -43,7 +42,7 @@ class _CollectionFullPageState extends State<CollectionFullPage> {
   void _getList() {
     _collectionList.clear();
     DataUtils.getAllCollections(context).then((collectionList) {
-      if (this.mounted) {
+      if (mounted) {
         setState(() {
           _collectionList = collectionList;
         });
@@ -92,7 +91,7 @@ class _CollectionFullPageState extends State<CollectionFullPage> {
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
-          new BoxShadow(
+          BoxShadow(
             color: const Color(0xFFd0d0d0),
             blurRadius: 1.0,
             spreadRadius: 2.0,
@@ -122,7 +121,7 @@ class _CollectionFullPageState extends State<CollectionFullPage> {
   }
 
   ListView buildContent() {
-    if (_collectionList.length == 0) {
+    if (_collectionList.isEmpty) {
       return ListView(
         children: <Widget>[
           Column(

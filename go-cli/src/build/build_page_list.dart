@@ -1,7 +1,9 @@
-import 'dart:io';
 import 'dart:convert';
+import 'dart:io';
+
 import 'package:mustache/mustache.dart';
 import 'package:path/path.dart' as p;
+
 import '../../utils/util.dart';
 import '../config.dart';
 import '../exception/demo.dart';
@@ -51,15 +53,15 @@ Future<List> buildPageListJson() async {
     } catch (err) {
       print("err $err");
 
-      throw new Exception('$dicPath');
+      throw Exception('$dicPath');
     }
   }
-  print("本次编译: 总${pageCount}个界面, 成功${detailList.length}条, 失败${errCount}条");
+  print("本次编译: 总$pageCount个界面, 成功${detailList.length}条, 失败$errCount条");
 
   String demoTplString = renderPagesDart(detailList);
 //
 //  // 生成 page_demo_package/index.dart
-  writeContent2Path(TARGET_PAGE_DIC, 'index.dart', demoTplString.replaceAll(new RegExp('-'), '_'));
+  writeContent2Path(TARGET_PAGE_DIC, 'index.dart', demoTplString.replaceAll(RegExp('-'), '_'));
 //  // 生成 page_demo_package/.demo.dart
   writeContent2Path(TARGET_PAGE_DIC, '.pages.json', json.encode(detailList));
   return Future(() => childList);
@@ -92,7 +94,7 @@ class StandardPages {
 }
 	  
 	''';
-  var template = new Template(source, name: 'template-filename.html');
+  var template = Template(source, name: 'template-filename.html');
 
 
   // 自定义前缀 避免出现数字非法字符等
@@ -122,7 +124,7 @@ Future<bool> checkPage(String path) async {
       isExist = await File(detailPath).exists();
     }
     if (!isExist) {
-     throw new InvalidDemo('$path$name not exit');
+     throw InvalidDemo('$path$name not exit');
     }
   }
   return Future(() => true);
@@ -137,7 +139,7 @@ Future<void> transformMd2Dart(String path)  async{
   String result = """
 String getMd() {
   return \"\"\"
-  ${mdContent}\"\"\";
+  $mdContent\"\"\";
 
 
 }

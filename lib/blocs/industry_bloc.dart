@@ -1,11 +1,9 @@
-/**
- * Created with Android Studio.
- * User: 一晟
- * Date: 2019/4/28
- * Time: 5:19 PM
- * email: zhu.yan@alibaba-inc.com
- * tartget:
- */
+/// Created with Android Studio.
+/// User: 一晟
+/// Date: 2019/4/28
+/// Time: 5:19 PM
+/// email: zhu.yan@alibaba-inc.com
+/// tartget:
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import './industry_api.dart';
@@ -13,6 +11,8 @@ import './industry_event.dart';
 import './industry_state.dart';
 
 class SuggestionBloc extends Bloc<SuggestionEvent, SuggestionState> {
+  SuggestionBloc(super.initialState);
+
   @override
   SuggestionState get initialState => SuggestionUninitialized();
   @override

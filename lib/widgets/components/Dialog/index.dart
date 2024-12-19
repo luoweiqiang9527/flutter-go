@@ -1,10 +1,10 @@
 import "package:flutter/material.dart";
 
 import '../../../model/widget.dart';
+import 'AboutDialog/index.dart' as AboutDialog;
 import 'AlertDialog/index.dart' as AlertDialog;
 import 'Dialog/index.dart' as Dialog;
 import 'SimpleDialog/index.dart' as SimpleDialog;
-import 'AboutDialog/index.dart' as AboutDialog;
 
 List<WidgetPoint> widgetPoints = [
   WidgetPoint(

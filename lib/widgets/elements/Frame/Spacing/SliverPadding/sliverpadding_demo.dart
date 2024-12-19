@@ -23,7 +23,7 @@ class SliverPaddingDemo extends StatelessWidget {
                 child: Center(
                   child: Text(
                     product.name,
-                    style: Theme.of(context).textTheme.title,
+                    style: Theme.of(context).textTheme.titleLarge,
                     textAlign: TextAlign.center,
                   ),
                 ),

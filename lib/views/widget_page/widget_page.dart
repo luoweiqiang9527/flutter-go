@@ -11,7 +11,7 @@ import 'package:flutter_go/routers/application.dart';
 
 class WidgetPage extends StatefulWidget {
   @override
-  SecondPageState createState() => new SecondPageState();
+  SecondPageState createState() => SecondPageState();
 }
 
 class SecondPageState extends State<WidgetPage>
@@ -33,10 +33,10 @@ class SecondPageState extends State<WidgetPage>
   Widget buildGrid() {
     // 存放最后的widget
     List<Widget> tiles = [];
-    Application.widgetTree.children.forEach((dynamic item) {
-      tiles.add(new CateCard(category: item));
-    });
-    return new ListView(
+    for (var item in Application.widgetTree.children) {
+      tiles.add(CateCard(category: item));
+    }
+    return ListView(
       children: tiles,
     );
   }
@@ -45,8 +45,8 @@ class SecondPageState extends State<WidgetPage>
   Widget build(BuildContext context) {
     super.build(context);
     return Container(
-      color: Theme.of(context).backgroundColor,
-      child: this.buildGrid(),
+      color: Theme.of(context).colorScheme.surface,
+      child: buildGrid(),
     );
   }
 }

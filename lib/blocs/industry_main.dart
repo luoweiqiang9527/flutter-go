@@ -37,15 +37,13 @@ class _IndustryState extends State<IndustryPage> {
         child: Text('出现错误'),
       );
     } else if (state is SuggestionLoaded) {
-      if (state.res.length == 0) {
+      if (state.res.isEmpty) {
         return Center(
           child: Text('没有适合的结果,更换查询条件试试'),
         );
       } else {
-        if (widget.itemTitle is Function) {
-          return widget.itemTitle(state);
-        }
-      }
+        return widget.itemTitle(state);
+            }
     }
     return Center(child: Text('没有适合的结果,更换查询条件试试'));
   }

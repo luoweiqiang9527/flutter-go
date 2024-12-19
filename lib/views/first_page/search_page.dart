@@ -1,11 +1,9 @@
+import 'dart:async';
+
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter/cupertino.dart';
-import 'dart:ui';
-import 'dart:async';
-import 'package:flutter_go/blocs/industry_main.dart' as Industry;
 import 'package:flutter_go/blocs/industry_event.dart';
+import 'package:flutter_go/blocs/industry_main.dart' as Industry;
 import 'package:flutter_go/routers/application.dart';
 import 'package:flutter_go/routers/routers.dart';
 
@@ -59,8 +57,7 @@ class SearchPage extends StatelessWidget {
           //print('searchBarPage=====>${controller.text}');
           //print('searchBarPage=====>${that.getResultsDebounced}');
           if (that is _SearchBarPageState &&
-              that.getResultsDebounced is Function &&
-              controller.text is String) {
+              that.getResultsDebounced is Function) {
             that.getResultsDebounced(controller.text);
           }
         },
@@ -116,10 +113,10 @@ class _SearchBarPageState extends State<SearchBarPage> {
       return;
     }
     loading = true;
-    if (_resultsTimer != null && _resultsTimer.isActive) {
+    if (_resultsTimer.isActive) {
       _resultsTimer.cancel();
     }
-    _resultsTimer = new Timer(new Duration(milliseconds: 400), () async {
+    _resultsTimer = Timer(Duration(milliseconds: 400), () async {
       loading = true;
       if (mounted) {
         suggestion.dispatch(SuggestionFetch(query: text));

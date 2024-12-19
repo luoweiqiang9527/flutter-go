@@ -14,8 +14,7 @@ class RaisedButtonDefault extends StatelessWidget {
   final bool isDisabled;
 
   const RaisedButtonDefault([this.isDisabled = true])
-      : assert(isDisabled != null),
-        super();
+      : super();
 
   @override
   Widget build(BuildContext context) {
@@ -110,10 +109,8 @@ class RaisedButtonCustom extends StatelessWidget {
         // RaisedButton 的点击事件
         onPressed: () {
           // Perform some action
-          if (_onPressed is VoidCallback) {
-            _onPressed();
-          }
-        },
+          _onPressed();
+                },
         // 改变高亮颜色回掉函数，一个按钮会触发两次，按下后改变时触发一次，松手后恢复原始颜色触发一次
         // 参数 bool，按下后true，恢复false
         onHighlightChanged: (isClick) {

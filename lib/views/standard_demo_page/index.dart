@@ -7,18 +7,20 @@
 // tartget:  xxx
 //
 
+import 'dart:convert';
+
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
-import '../../components/widget_demo.dart';
-import 'dart:convert';
-import '../../components/markdown.dart' as mdCopy;
-import '../../components/flutter_markdown/lib/flutter_markdown.dart';
-import '../../standard_pages/index.dart';
-import '../../page_demo_package/index.dart';
+import 'package:flutter_go/components/loading.dart';
 import 'package:flutter_go/routers/application.dart';
 import 'package:flutter_go/routers/routers.dart';
 import 'package:flutter_go/utils/net_utils.dart';
-import 'package:flutter_go/components/loading.dart';
+
+import '../../components/flutter_markdown/lib/flutter_markdown.dart';
+import '../../components/markdown.dart' as mdCopy;
+import '../../components/widget_demo.dart';
+import '../../page_demo_package/index.dart';
+import '../../standard_pages/index.dart';
 
 const githubHost =
     'https://raw.githubusercontent.com/alibaba/flutter-go/master';
@@ -43,11 +45,11 @@ class _StandardView extends State<StandardView> {
   bool isLoading = false;
   String author = '';
   String email = '';
-  StandardPages standardPage = new StandardPages();
+  StandardPages standardPage = StandardPages();
   @override
   void initState() {
     super.initState();
-    this.getPageInfo();
+    getPageInfo();
   }
 
 //  didChangeDependencies() {
@@ -61,14 +63,12 @@ class _StandardView extends State<StandardView> {
     Map<String, dynamic> pageDetail =
         jsonList.firstWhere((item) => item['id'] == widget.id, orElse: null);
 
-    if (pageDetail != null) {
-      setState(() {
-        pageTitle = pageDetail['title'] ?? '请加入title';
-        author = pageDetail['author'];
-        email = pageDetail['email'];
-      });
+    setState(() {
+      pageTitle = pageDetail['title'] ?? '请加入title';
+      author = pageDetail['author'];
+      email = pageDetail['email'];
+    });
     }
-  }
 
   /// 从本地获取基本文章信息
   String localGetPagesMarkdown() {
@@ -79,19 +79,13 @@ class _StandardView extends State<StandardView> {
   }
 
   Future<String> getContentOnline() async {
-    this.setState(() {
+    setState(() {
       isLoading = true;
     });
 
     List response = jsonDecode(await NetUtils.get(PagesUrl));
 
     Map targetPage = response.firstWhere((page) => page['id'] == widget.id);
-    if (targetPage == null) {
-      setState(() {
-        isLoading = false;
-      });
-      return Future(() => '未获取界面相当信息');
-    }
     setState(() {
       pageTitle = targetPage['title'] ?? 'xxx';
       author = targetPage['author'];
@@ -103,7 +97,7 @@ class _StandardView extends State<StandardView> {
         targetPage['author'] +
         "_" +
         targetPage['id'];
-    String pageContent = await NetUtils.get(githubUrl + pageName + "/index.md");
+    String pageContent = await NetUtils.get("$githubUrl$pageName/index.md");
     setState(() {
       isLoading = false;
     });
@@ -123,7 +117,7 @@ class _StandardView extends State<StandardView> {
       conent = localGetPagesMarkdown();
       localGetPagesAttrsInfo();
     }
-    if (this.mounted) {
+    if (mounted) {
       setState(() {
         markdownDesc = conent;
       });
@@ -131,7 +125,7 @@ class _StandardView extends State<StandardView> {
     return Future(() => conent);
   }
 
-  void seeSourceCode(id) async {
+  Future<void> seeSourceCode(id) async {
     List response;
     try {
       response = jsonDecode(await NetUtils.get(DemosUrl));
@@ -141,9 +135,6 @@ class _StandardView extends State<StandardView> {
 
     Map<String, dynamic> demoDetail =
         response.firstWhere((item) => item['id'] == id, orElse: null);
-    if (demoDetail == null) {
-      return null;
-    }
 
     String remoteSouceCode =
         '$githubHost/lib/page_demo_package/${demoDetail['name']}_${demoDetail['author']}_${demoDetail['id']}/src/index.dart';
@@ -171,45 +162,34 @@ class _StandardView extends State<StandardView> {
   }
 
   Widget buildMarkdown() {
-    if (markdownDesc == null) {
-      return null;
-    } else {
-      if (Application.env == ENV.DEV) {
-        // 为了能在local改变的时候. 动态更新内容, getPageInfo只有初始化状态下会有效果
-        markdownDesc = localGetPagesMarkdown();
-      }
+    if (Application.env == ENV.DEV) {
+      // 为了能在local改变的时候. 动态更新内容, getPageInfo只有初始化状态下会有效果
+      markdownDesc = localGetPagesMarkdown();
     }
-
+  
     return MarkdownBody(
         data: markdownDesc,
-        syntaxHighlighter: new mdCopy.HighLight(),
+        syntaxHighlighter: mdCopy.HighLight(),
         demoBuilder: (Map<String, dynamic> attrs) {
           List<Widget> demo = demoObjects[attrs['id']];
-          if (demo == null) {
-            String errString = "not found ${attrs['id']} in demo packages";
-            debugPrint(errString);
-            demo = [Text(errString)];
-            return Column(children: demo);
-          } else {
-            return Column(
-              children: <Widget>[
-                Column(
-                  children: demo,
-                ),
-                Divider(
-                  color: Theme.of(context).primaryColor,
-                ),
-                InkWell(
-                  onTap: () {
-                    seeSourceCode(attrs['id']);
-                  },
-                  child: Text("查看源码",
-                      style: TextStyle(color: Theme.of(context).primaryColor)),
-                )
-              ],
-            );
-          }
-        });
+          return Column(
+            children: <Widget>[
+              Column(
+                children: demo,
+              ),
+              Divider(
+                color: Theme.of(context).primaryColor,
+              ),
+              InkWell(
+                onTap: () {
+                  seeSourceCode(attrs['id']);
+                },
+                child: Text("查看源码",
+                    style: TextStyle(color: Theme.of(context).primaryColor)),
+              )
+            ],
+          );
+                });
   }
 
   alertDialog({String msg, String title}) {
@@ -217,12 +197,12 @@ class _StandardView extends State<StandardView> {
       context: context,
       barrierDismissible: true,
       builder: (BuildContext context) {
-        return new AlertDialog(
-            title: new Text(title),
-            content: new SingleChildScrollView(
-              child: new ListBody(
+        return AlertDialog(
+            title: Text(title),
+            content: SingleChildScrollView(
+              child: ListBody(
                 children: <Widget>[
-                  new Text(msg),
+                  Text(msg),
                 ],
               ),
             ));
@@ -232,7 +212,7 @@ class _StandardView extends State<StandardView> {
 
   @override
   Widget build(BuildContext context) {
-    return new WidgetDemo(
+    return WidgetDemo(
       title: pageTitle,
 //      codeUrl: 'elements/Form/Button/DropdownButton/demo.dart',
       contentList: [

@@ -1,12 +1,14 @@
 import 'dart:async';
 import 'dart:io';
+
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
+
+import './command/build.dart';
 //import './version.dart';
 import './command/create_demo.dart';
 import './command/create_page.dart';
 import './command/watch_md.dart';
-import './command/build.dart';
 
 
 

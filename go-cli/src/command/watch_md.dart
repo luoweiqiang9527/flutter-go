@@ -7,14 +7,15 @@
 // target: 监听demo与md
 //
 
-import 'package:path/path.dart' as p;
+import 'dart:async';
+
 import 'package:args/command_runner.dart';
+import 'package:path/path.dart' as p;
+import 'package:watcher/watcher.dart';
+
 import '../build/build_demo_list.dart';
 import '../build/build_page_list.dart';
-
-import 'package:watcher/watcher.dart';
 import '../config.dart';
-import 'dart:async';
 
 void watch() {
   Timer _changeTimer;
@@ -32,10 +33,10 @@ void watch() {
       return ;
     }
     if (event.type == ChangeType.ADD || event.type == ChangeType.REMOVE) {
-      if (_changeTimer != null && _changeTimer.isActive) {
+      if (_changeTimer.isActive) {
         _changeTimer.cancel();
       }
-      _changeTimer = new Timer(Duration(milliseconds: 1000), () {
+      _changeTimer = Timer(Duration(milliseconds: 1000), () {
         buildDemoListJson();
       });
     }

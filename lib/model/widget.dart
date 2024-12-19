@@ -88,7 +88,7 @@ class WidgetPoint implements WidgetInterface {
   }
 
   Map toSqlCondition() {
-    Map _map = this.toMap();
+    Map _map = toMap();
     Map condition = {};
     _map.forEach((k, value) {
       if (value != null) {
@@ -117,7 +117,7 @@ class WidgetControlModel {
     List listJson =
         await sql.getByCondition(conditions: widgetPoint.toSqlCondition());
     List<WidgetPoint> widgets = listJson.map((json) {
-      return new WidgetPoint.fromJSON(json);
+      return WidgetPoint.fromJSON(json);
     }).toList();
     // print("widgets $widgets");
     return widgets;
@@ -129,7 +129,7 @@ class WidgetControlModel {
     if (json.isEmpty) {
       return null;
     }
-    return new WidgetPoint.fromJSON(json.first);
+    return WidgetPoint.fromJSON(json.first);
   }
 
   Future<List<WidgetPoint>> search(String name) async {
@@ -140,7 +140,7 @@ class WidgetControlModel {
     }
 
     List<WidgetPoint> widgets = json.map((json) {
-      return new WidgetPoint.fromJSON(json);
+      return WidgetPoint.fromJSON(json);
     }).toList();
 
     return widgets;
@@ -190,24 +190,24 @@ class CategoryComponent extends CommonItem {
       this.parent});
   CategoryComponent.fromJson(Map json) {
     if (json['id'] != null && json['id'].runtimeType == String) {
-      this.id = int.parse(json['id']);
+      id = int.parse(json['id']);
     } else {
-      this.id = json['id'];
+      id = json['id'];
     }
-    this.name = json['name'];
-    this.parentId = json['parentId'];
-    this.token = json['id'].toString() + json['type'];
+    name = json['name'];
+    parentId = json['parentId'];
+    token = json['id'].toString() + json['type'];
   }
   void addChildren(Object item) {
     if (item is CategoryComponent) {
       CategoryComponent cate = item;
       cate.parent = this;
-      this.children.add(cate);
+      children.add(cate);
     }
     if (item is WidgetLeaf) {
       WidgetLeaf widget = item;
       widget.parent = this;
-      this.children.add(widget);
+      children.add(widget);
     }
   }
 
@@ -220,25 +220,16 @@ class CategoryComponent extends CommonItem {
   @override
   CommonItem find(String token, [CommonItem node]) {
     CommonItem ret;
-    if (node != null) {
-      if (node.token == token) {
-        return node;
-      } else {
-        // 循环到叶子节点, 返回 空
-        if (node.children == null) {
-          return null;
-        }
-        for (int i = 0; i < node.children.length; i++) {
-          CommonItem temp = this.find(token, node.children[i]);
-          if (temp != null) {
-            ret = temp;
-          }
-        }
-      }
+    if (node.token == token) {
+      return node;
     } else {
-      ret = find(token, this);
+      // 循环到叶子节点, 返回 空
+      for (int i = 0; i < node.children.length; i++) {
+        CommonItem temp = find(token, node.children[i]);
+        ret = temp;
+            }
     }
-    return ret;
+      return ret;
   }
 }
 
@@ -264,16 +255,16 @@ class WidgetLeaf extends CommonItem {
 
   WidgetLeaf.fromJson(Map json) {
     if (json['id'] != null && json['id'].runtimeType == String) {
-      this.id = int.parse(json['id']);
+      id = int.parse(json['id']);
     } else {
-      this.id = json['id'];
+      id = json['id'];
     }
-    this.name = json['name'];
-    this.display = json['display'];
-    this.author = json['author'] ?? null;
-    this.path = json['path'] ?? null;
-    this.pageId = json['pageId'] ?? null;
-    this.token = json['id'].toString() + json['type'];
+    name = json['name'];
+    display = json['display'];
+    author = json['author'] ?? null;
+    path = json['path'] ?? null;
+    pageId = json['pageId'] ?? null;
+    token = json['id'].toString() + json['type'];
   }
   @override
   CommonItem getChild(String token) {
@@ -301,20 +292,18 @@ class WidgetTree {
       current =
           CategoryComponent(id: 0, name: 'root', parentId: null, children: []);
     }
-    json.forEach((item) {
+    for (var item in json) {
       // 归属分类级别
       if (['root', 'category'].indexOf(item['type']) != -1) {
         CategoryComponent cate = CategoryComponent.fromJson(item);
-        if (cate.children != null) {
-          buildWidgetTree(item['children'], cate);
-        }
-        current.addChildren(cate);
+        buildWidgetTree(item['children'], cate);
+              current.addChildren(cate);
       } else {
         // 归属最后一层叶子节点
         WidgetLeaf cate = WidgetLeaf.fromJson(item);
         current.addChildren(cate);
       }
-    });
+    }
     return current;
   }
 
@@ -324,7 +313,7 @@ class WidgetTree {
     if (Application.env == ENV.PRODUCTION) {
       return list;
     }
-    devPages.forEach((item) {
+    for (var item in devPages) {
       index++;
       if (item['id'] != null) {
         devChildren.add({
@@ -337,8 +326,8 @@ class WidgetTree {
           "pageId": item['id']
         });
       }
-    });
-    list.forEach((item) {
+    }
+    for (var item in list) {
       if (item['name'].toString().toUpperCase() == 'DEVELOPER') {
         List children = item['children'];
         children.insert(0, {
@@ -349,7 +338,7 @@ class WidgetTree {
           "children": devChildren
         });
       }
-    });
+    }
     return list;
   }
 

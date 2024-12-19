@@ -1,32 +1,33 @@
-import 'package:flutter/material.dart';
+import 'package:event_bus/event_bus.dart';
 import 'package:fluro/fluro.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'routers/routers.dart';
-import 'routers/application.dart' show Application;
-import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter_go/event/event_bus.dart';
+import 'package:flutter_go/event/event_model.dart';
+import 'package:flutter_go/model/search_history.dart';
+import 'package:flutter_go/model/user_info.dart';
+import 'package:flutter_go/model/widget.dart';
+import 'package:flutter_go/standard_pages/index.dart';
+import 'package:flutter_go/utils/analytics.dart' as Analytics;
+import 'package:flutter_go/utils/data_utils.dart';
+//import 'views/welcome_page/index.dart';
+import 'package:flutter_go/utils/net_utils.dart';
 import 'package:flutter_go/utils/provider.dart';
 import 'package:flutter_go/utils/shared_preferences.dart';
 import 'package:flutter_go/views/home.dart';
-import 'package:flutter_go/model/search_history.dart';
-import 'package:flutter_go/utils/analytics.dart' as Analytics;
 import 'package:flutter_go/views/login_page/login_page.dart';
-import 'package:flutter_go/utils/data_utils.dart';
-import 'package:flutter_go/model/user_info.dart';
-import 'package:flutter_jpush/flutter_jpush.dart';
-import 'package:flutter_go/event/event_bus.dart';
-import 'package:flutter_go/event/event_model.dart';
-import 'package:event_bus/event_bus.dart';
-import 'package:flutter_go/model/widget.dart';
-import 'package:flutter_go/standard_pages/index.dart';
-//import 'views/welcome_page/index.dart';
-import 'package:flutter_go/utils/net_utils.dart';
+import 'package:jpush_flutter/jpush_flutter.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+
+import 'routers/application.dart' show Application;
+import 'routers/routers.dart';
 
 SpUtil sp;
 var db;
 
 class MyApp extends StatefulWidget {
   MyApp() {
-    final router = new Router();
+    final router = Router();
     Routes.configureRoutes(router);
     // 这里设置项目环境
     Application.router = router;
@@ -46,7 +47,7 @@ class _MyAppState extends State<MyApp> {
   int themeColor = 0xFFC91B3A;
 
   _MyAppState() {
-    final eventBus = new EventBus();
+    final eventBus = EventBus();
     ApplicationEvent.event = eventBus;
   }
 
@@ -80,14 +81,14 @@ class _MyAppState extends State<MyApp> {
       setState(() {
         /// 是否连接，连接了才可以推送
         print("连接状态改变:$connected");
-        this.isConnected = connected;
+        isConnected = connected;
         if (connected) {
           //在启动的时候会去连接自己的服务器，连接并注册成功之后会返回一个唯一的设备号
           try {
             FlutterJPush.getRegistrationID().then((String regId) {
               print("主动获取设备号:$regId");
               setState(() {
-                this.registrationId = regId;
+                registrationId = regId;
               });
             });
           } catch (error) {
@@ -158,7 +159,7 @@ class _MyAppState extends State<MyApp> {
   showWelcomePage() {
     if (_isLoading) {
       return Container(
-        color: Color(this.themeColor),
+        color: Color(themeColor),
         child: Center(
           child: SpinKitPouringHourglass(color: Colors.white),
         ),
@@ -176,22 +177,20 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
 //    WidgetTree.getCommonItemByPath([15, 17], Application.widgetTree);
-    return new MaterialApp(
+    return MaterialApp(
       title: 'titles',
-      theme: new ThemeData(
-        primaryColor: Color(this.themeColor),
-        backgroundColor: Color(0xFFEFEFEF),
-        accentColor: Color(0xFF888888),
+      theme: ThemeData(
+        primaryColor: Color(themeColor),
         textTheme: TextTheme(
           //设置Material的默认字体样式
-          body1: TextStyle(color: Color(0xFF888888), fontSize: 16.0),
+          bodyMedium: TextStyle(color: Color(0xFF888888), fontSize: 16.0),
         ),
         iconTheme: IconThemeData(
-          color: Color(this.themeColor),
+          color: Color(themeColor),
           size: 35.0,
-        ),
+        ), colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Color(0xFF888888)), colorScheme: ColorScheme(surface: Color(0xFFEFEFEF)),
       ),
-      home: new Scaffold(body: showWelcomePage()),
+      home: Scaffold(body: showWelcomePage()),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: Application.router.generator,
       navigatorObservers: <NavigatorObserver>[Analytics.observer],
@@ -199,7 +198,7 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-void _startupJpush() async {
+Future<void> _startupJpush() async {
   print("初始化jpush");
   await FlutterJPush.startup();
   print("初始化jpush成功");
@@ -207,10 +206,10 @@ void _startupJpush() async {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final provider = new Provider();
+  final provider = Provider();
   await provider.init(true);
   sp = await SpUtil.getInstance();
-  new SearchHistoryList(sp);
+  SearchHistoryList(sp);
 
   await DataUtils.getWidgetTreeList().then((List json) {
     List data =
@@ -219,5 +218,5 @@ void main() async {
     print("Application.widgetTree>>>> ${Application.widgetTree}");
   });
   db = Provider.db;
-  runApp(new MyApp());
+  runApp(MyApp());
 }

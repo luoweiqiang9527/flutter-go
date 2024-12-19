@@ -1,11 +1,3 @@
-/// Created with Android Studio.
-/// User: 一晟
-/// Date: 2019/1/20
-/// Time: 上午11:34
-/// email: zhu.yan@alibaba-inc.com
-/// target: PainterPath 的示例
-
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
@@ -67,7 +59,7 @@ class DrawPainter extends CustomPainter {
     //    ..filterQuality = FilterQuality.high //颜色渲染模式的质量
     //    ..strokeWidth = 15.0 ;//画笔的宽度
 
-    painter = new Paint()
+    painter = Paint()
       ..color = Colors.blueAccent
       ..strokeCap = StrokeCap.round
       ..isAntiAlias = true
@@ -80,7 +72,7 @@ class DrawPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     //canvas.drawColor(Colors.red, BlendMode.colorDodge);
-    Path path = new Path();
+    Path path = Path();
     drawThisPath(canvas, size, path);
     path.close();
     canvas.drawPath(path, painter);
@@ -94,12 +86,12 @@ class DrawPainter extends CustomPainter {
     switch (type) {
       case 'simpleline':
         //新建了一个path,然后将路径起始点移动到坐标(100,100)的位置
-        Path path = new Path()..moveTo(0.0, 0.0);
+        Path path = Path()..moveTo(0.0, 0.0);
         path.lineTo(200.0, 200.0);
         canvas.drawPath(path, painter);
         break;
       case 'polyline':
-        Path path = new Path()..moveTo(100.0, 10.0);
+        Path path = Path()..moveTo(100.0, 10.0);
 
         path.lineTo(200.0, 150.0);
         path.lineTo(100.0, 200.0);
@@ -107,7 +99,7 @@ class DrawPainter extends CustomPainter {
         canvas.drawPath(path, painter);
         break;
       case 'Besizerline2':
-        Path path = new Path()..moveTo(0.0, 0.0);
+        Path path = Path()..moveTo(0.0, 0.0);
         Rect rect1 = Rect.fromCircle(center: Offset(50.0, 100.0), radius: 60.0);
         path.arcTo(rect1, 0.0, 3.14, false);
         canvas.drawPath(path, painter);
@@ -120,7 +112,7 @@ class DrawPainter extends CustomPainter {
       case 'Besizerline3':
         var width = size.width;
         var height = 300;
-        Path path = new Path()..moveTo(width / 2, height / 4);
+        Path path = Path()..moveTo(width / 2, height / 4);
         path.cubicTo((width * 6) / 7, height / 9, (width * 13) / 13,
             (height * 2) / 5, width / 2, (height * 7) / 12);
         canvas.drawPath(path, painter
@@ -128,7 +120,7 @@ class DrawPainter extends CustomPainter {
             // ..color = Colors.red
             );
 
-        Path path2 = new Path();
+        Path path2 = Path();
         path2.moveTo(width / 2, height / 4);
         path2.cubicTo(width / 7, height / 9, width / 21, (height * 2) / 5,
             width / 2, (height * 7) / 12);
